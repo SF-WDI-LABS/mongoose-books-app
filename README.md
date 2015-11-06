@@ -95,7 +95,7 @@ For HTML, though, we're going to take advantage of something called server-side 
 1. If our `index.hbs` is just plain HTML, we're not taking advantage of templating.  Add the following header to your `index.hbs` jumbotron:
 
   ```html
-  <h1><%= name %> is awesome!</h1>
+  <h1>{{ name } is awesome!</h1>
   ```
 
 1. Restart your server and refresh your page. What do you see?
@@ -117,7 +117,7 @@ For HTML, though, we're going to take advantage of something called server-side 
 
 Now that we see how `hbs` uses simple data to fill in blanks, let's do something a little more complex -- `hbs` using JavaScript logic to loop over a list of data.
 
-1. Add some starter data  (often called "seed data") to serve when the users view '/'. (They're not technically all paintings, but that's okay.)
+1. Add some starter data  (often called "seed data") to serve when the users view '/'.
 
 
   ```js
@@ -134,7 +134,7 @@ Now that we see how `hbs` uses simple data to fill in blanks, let's do something
     }]
   ```
 
-1.  To have this data show up on the page, we'll need to pass it to the render method. Update the `app.get` method for `/` again so it can also render the `paintings` data with the `hbs` template.
+1.  To have this data show up on the page, we'll need to pass it to the render method. Update the `app.get` method for `/` again so it can also render the `albums` data with the `hbs` template.
 
   > **Hint**: Add a key-value pair to the object we're already passing to the `render` method.
 
