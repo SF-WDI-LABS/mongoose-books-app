@@ -23,7 +23,7 @@
 
 1. Make a directory called `simple-express`. From inside your `simple-express` directory, enter the Terminal command `npm init`. It asks a series of questions about your project and uses the information to create a `package.json` file for you. For now, we'll use all of the defaults except "entry point". Type in `server.js` for your entry point, and then you can just hit enter until `npm init` is done.  
 
-1. Add express to the local project using `npm`. Use the `save` option so that NPM automatically adds express to your dependencies in `package.json`.
+2. Add express to the local project using `npm`. Use the `save` option so that NPM automatically adds express to your dependencies in `package.json`.
 
   ```bash
   npm install express --save
@@ -64,24 +64,23 @@ All of the files and data for a website usually live on its server(s) and are se
 
 We could just send along a lot of static files -- and we'll look at how to do that with Express a little later today. In that case, we'd make a separate jQuery AJAX request for any of our data we wanted to display.
 
-# Edit this part!!!!
 For HTML, though, we're going to take advantage of something called server-side templating.  Server-side HTML templating basically lets us put data into an HTML file before the server sends it over to the client. The template is like a version of an HTML file with blanks, and we let a server-side "view engine" know how to fill them in with the server's data.
 
-# Edit this part!!!
-1. Install the templating system `handlebars` for this project using the Terminal:
+
+1. Install the templating system `hbs` for this project using the Terminal:
 
   ```bash
-     npm install handlebars --save
+     npm install hbs --save
   ```
-# Edit this part!!!
-1. Create a new folder `views` with a file `index.ejs` inside. The `index.ejs` file will be our template, and ejs will translate it into HTML before sending it to clients. Our `index.ejs` can look exactly like an HMTL file.  For now, it should just say `<h1>General Assembly Rocks!</h1>` (or a custom message of your choice).
 
-1. Set the project's view engine to ejs. This lets express know what module should render the template (i.e., fill in the blanks).
+1. Create a new folder `views` with a file `index.hbs` inside. The `index.hbs` file will be our template, and ejs will translate it into HTML before sending it to clients. Our `index.hbs` can look exactly like an HMTL file.  For now, it should just say `<h1>General Assembly Rocks!</h1>` (or a custom message of your choice).
+
+1. Set the project's view engine to hbs. This lets express know what module should render the template (i.e., fill in the blanks).
 
   ```js
     // server.js
     // ...
-    app.set('view engine', 'ejs');
+    app.set('view engine', 'hbs');
   ```
 
 1. Change the `app.get` route to render the template file instead of just sending back a string.
@@ -92,18 +91,18 @@ For HTML, though, we're going to take advantage of something called server-side 
 
   > **Hint**: Remember to stop and restart your server from the Terminal to view any changes. Hit `control + c` to stop your server, and run `node server.js` again to restart it.
 
-# Edit this part!!!!!
-1. If our `index.ejs` is just plain HTML, we're not taking advantage of templating.  Add the following header to your `index.ejs` jumbotron:
+
+1. If our `index.hbs` is just plain HTML, we're not taking advantage of templating.  Add the following header to your `index.hbs` jumbotron:
 
   ```html
   <h1><%= name %> is awesome!</h1>
   ```
 
 1. Restart your server and refresh your page. What do you see?
-# EDIT!!!!
-1. EJS uses `<%` ... `%>` to figure out what to interpret as a template. The areas where a template has blanks that need to be filled in with some data are inside `<%=` and `%>`.  So, `<%= name %>` makes ejs think there should be some `name` data available for it to use to fill in this blank.  Let's get some name data set up. In your server.js file, define a `myName` variable and assign your name to it as a string.
-# EDIT!!!!
-1. The `myName` variable is holding on to your name data on the server.  Now, we need to let ejs know to use that variable to fill in the `name` blank. To have this data show up on the page, we'll need to pass it to the render method. Update the `app.get` method for the `/` path:
+
+1. `hbs` uses `{{` ... `}}` to figure out what to interpret as a template. The areas where a template has blanks that need to be filled in with some data are inside `{{` and `}}`.  So, `{{ name }}` makes `hbs` think there should be some `name` data available for it to use to fill in this blank.  Let's get some name data set up. In your server.js file, define a `myName` variable and assign your name to it as a string.
+
+1. The `myName` variable is holding on to your name data on the server.  Now, we need to let `hbs` know to use that variable to fill in the `name` blank. To have this data show up on the page, we'll need to pass it to the render method. Update the `app.get` method for the `/` path:
 
   ```js
     // server.js
@@ -116,44 +115,55 @@ For HTML, though, we're going to take advantage of something called server-side 
 
 **Add Some Data on the Server**
 
-Now that we see how ejs uses simple data to fill in blanks, let's do something a little more complex -- ejs using JavaScript logic to loop over a list of data.
+Now that we see how `hbs` uses simple data to fill in blanks, let's do something a little more complex -- `hbs` using JavaScript logic to loop over a list of data.
 
 1. Add some starter data  (often called "seed data") to serve when the users view '/'. (They're not technically all paintings, but that's okay.)
 
 
   ```js
     // server.js
-    var paintings = [
-      { title: 'Ladies d\'Avignon', artist: 'Pabolo Picasso', imgUrl: "https://upload.wikimedia.org/wikipedia/en/4/4c/Les_Demoiselles_d\'Avignon.jpg" },
-      { title: 'Rothko Chapel', artist: 'Mark Rothko', imgUrl: "http://forums.ssrc.org/ndsp/wp-content/blogs.dir/23/files/2014/07/Rothko_Chapel_2.jpg" },
-      { title: 'The Kiss', artist: 'Gustav Klimt', imgUrl: "https://upload.wikimedia.org/wikipedia/commons/4/40/The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg"}
-      ]
+    var albums = [
+      { title: 'Cupid Deluxe',
+        artist: 'Blood Orange'
+      },
+      { title: 'M3LL155X - EP',
+        artist: 'FKA twigs'
+      },
+      { title: 'Fake History',
+        artist: 'letlive.'
+    }]
   ```
 
-1.  To have this data show up on the page, we'll need to pass it to the render method. Update the `app.get` method for `/` again so it can also render the `paintings` data with the ejs template.
+1.  To have this data show up on the page, we'll need to pass it to the render method. Update the `app.get` method for `/` again so it can also render the `paintings` data with the `hbs` template.
 
   > **Hint**: Add a key-value pair to the object we're already passing to the `render` method.
 
 1. We also need to put a blank in our html template where the data will be filled in.
 
   ```html
-  <!-- index.ejs -->
-  <ul>
-    <% for(var i=0; i<paintings.length; i++) { %>
-      <li>
-        <%= paintings[i].title %>
-      </li>
-    <% } %>
-  </ul>
+  <!-- index.hbs -->
+  <h1>Your Albums</h1>
+
+  {{#list albums}}
+    <h3>{{title}} : </h3>
+  {{/list}}
+  ```
+  ```
+  Handlebars.registerHelper('list', function(context, options) {
+  var ret = "<ul>";
+
+  for(var i=0, j=context.length; i<j; i++) {
+    ret = ret + "<li>" + options.fn(context[i]) + "</li>";
+  }
+
+    return ret + "</ul>";
+  });
   ```
 
-1. Restart your server and refresh the page. You should see a list of artwork titles.
+3. Restart your server and refresh the page. You should see a list of artwork titles.
 
-1. Modify the basic template above so that the artist name is also shown with the title of each painting.  
+4. Modify the basic template above so that the artist name is also shown with the title of each album.  
 
-1. Modify the template so that the painting images are displayed as well.
-
-  > **Hint**: Use `<img src="">`.
 
 **Add Static Files (CSS, JS, Images)**
 
