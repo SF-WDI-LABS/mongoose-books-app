@@ -64,15 +64,16 @@ All of the files and data for a website usually live on its server(s) and are se
 
 We could just send along a lot of static files -- and we'll look at how to do that with Express a little later today. In that case, we'd make a separate jQuery AJAX request for any of our data we wanted to display.
 
+# Edit this part!!!!
 For HTML, though, we're going to take advantage of something called server-side templating.  Server-side HTML templating basically lets us put data into an HTML file before the server sends it over to the client. The template is like a version of an HTML file with blanks, and we let a server-side "view engine" know how to fill them in with the server's data.
 
-
+# Edit this part!!!
 1. Install the templating system `ejs` for this project using the Terminal:
 
   ```bash
      npm install ejs --save
   ```
-
+# Edit this part!!!
 1. Create a new folder `views` with a file `index.ejs` inside. The `index.ejs` file will be our template, and ejs will translate it into HTML before sending it to clients. Our `index.ejs` can look exactly like an HMTL file.  For now, it should just say `<h1>General Assembly Rocks!</h1>` (or a custom message of your choice).
 
 1. Set the project's view engine to ejs. This lets express know what module should render the template (i.e., fill in the blanks).
@@ -91,6 +92,7 @@ For HTML, though, we're going to take advantage of something called server-side 
 
   > **Hint**: Remember to stop and restart your server from the Terminal to view any changes. Hit `control + c` to stop your server, and run `node server.js` again to restart it.
 
+# Edit this part!!!!!
 1. If our `index.ejs` is just plain HTML, we're not taking advantage of templating.  Add the following header to your `index.ejs` jumbotron:
 
   ```html
@@ -98,9 +100,9 @@ For HTML, though, we're going to take advantage of something called server-side 
   ```
 
 1. Restart your server and refresh your page. What do you see?
-
+# EDIT!!!!
 1. EJS uses `<%` ... `%>` to figure out what to interpret as a template. The areas where a template has blanks that need to be filled in with some data are inside `<%=` and `%>`.  So, `<%= name %>` makes ejs think there should be some `name` data available for it to use to fill in this blank.  Let's get some name data set up. In your server.js file, define a `myName` variable and assign your name to it as a string.
-
+# EDIT!!!!
 1. The `myName` variable is holding on to your name data on the server.  Now, we need to let ejs know to use that variable to fill in the `name` blank. To have this data show up on the page, we'll need to pass it to the render method. Update the `app.get` method for the `/` path:
 
   ```js
