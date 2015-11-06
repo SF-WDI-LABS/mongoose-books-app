@@ -1,0 +1,16 @@
+{
+  "name": "simple-express",
+  "version": "1.0.0",
+  "description": "\"A starter express app to demonstrate handlebars, routes, and three types of responses.\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "hbs": "^4.0.0"
+  }
+}
