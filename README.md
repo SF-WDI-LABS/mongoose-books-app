@@ -227,7 +227,7 @@ We're making a weird app. Paintings and taquerias.  Treat your senses.
     app.use(express.static('vendor'));
   ```
 
-1. Add an image to your `public/images` folder and display it in `index.ejs`. Note: this is where Ganesh is coming from in the solutions.
+1. Add an image to your `public/images` folder and display it in `index.hbs`. Note: this is where Ganesh is coming from in the solutions.
 
 <!-- 1. Add a post method to `/api/taquerias` and push a new taqueria into the array.
 
