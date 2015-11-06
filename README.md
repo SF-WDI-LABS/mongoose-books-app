@@ -95,7 +95,7 @@ For HTML, though, we're going to take advantage of something called server-side 
 1. If our `index.hbs` is just plain HTML, we're not taking advantage of templating.  Add the following header to your `index.hbs` jumbotron:
 
   ```html
-  <h1>{{ name } is awesome!</h1>
+  <h1>{{ name }} is awesome!</h1>
   ```
 
 1. Restart your server and refresh your page. What do you see?
@@ -210,7 +210,6 @@ We're making a weird app. Paintings and taquerias.  Treat your senses.
 
 1. Navigate to http://localhost:3000/api/taquerias (remember to restart your server first!) and check that the data is showing up.
 
-![Zoidberg hooray gif](http://31.media.tumblr.com/tumblr_l9y7wqbkag1qzjefho1_500.gif#hooray%20gif%20483x500)
 
 ### Stretch Challenges
 
