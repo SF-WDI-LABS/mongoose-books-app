@@ -68,10 +68,10 @@ We could just send along a lot of static files -- and we'll look at how to do th
 For HTML, though, we're going to take advantage of something called server-side templating.  Server-side HTML templating basically lets us put data into an HTML file before the server sends it over to the client. The template is like a version of an HTML file with blanks, and we let a server-side "view engine" know how to fill them in with the server's data.
 
 # Edit this part!!!
-1. Install the templating system `ejs` for this project using the Terminal:
+1. Install the templating system `handlebars` for this project using the Terminal:
 
   ```bash
-     npm install ejs --save
+     npm install handlebars --save
   ```
 # Edit this part!!!
 1. Create a new folder `views` with a file `index.ejs` inside. The `index.ejs` file will be our template, and ejs will translate it into HTML before sending it to clients. Our `index.ejs` can look exactly like an HMTL file.  For now, it should just say `<h1>General Assembly Rocks!</h1>` (or a custom message of your choice).
