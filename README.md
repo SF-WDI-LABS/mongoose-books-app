@@ -53,7 +53,7 @@
   > **Hint**: Reference the documentation linked in the README.  
   > **Hint**: `process.env.PORT || 3000` means "in production use the production port, otherwise use 3000 (for development)".
 
-1. Run `node server.js` in the Terminal, and visit `http://localhost:3000/` in your browser. You should see "Hello World!"   
+1. Run `nodemon server.js` in the Terminal, and visit `http://localhost:3000/` in your browser. You should see "Hello World!"   
 
 1. Console log the `req` (request) and the `res` (response) objects inside your server code's `app.get` method for the `/` path. (The `/` path is often called the "root" path.) Restart the server and briefly check out what the `req` and `res` are.
 
@@ -73,7 +73,7 @@ For HTML, though, we're going to take advantage of something called server-side 
      npm install hbs --save
   ```
 
-1. Create a new folder `views` with a file `index.hbs` inside. The `index.hbs` file will be our template, and ejs will translate it into HTML before sending it to clients. Our `index.hbs` can look exactly like an HMTL file.  For now, it should just say `<h1>General Assembly Rocks!</h1>` (or a custom message of your choice).
+1. Create a new folder `views` with a file `index.hbs` inside. The `index.hbs` file will be our template, and hbs will translate it into HTML before sending it to clients. Our `index.hbs` can look exactly like an HMTL file.  For now, it should just say `<h1>General Assembly Rocks!</h1>` (or a custom message of your choice).
 
 1. Set the project's view engine to hbs. This lets express know what module should render the template (i.e., fill in the blanks).
 
@@ -89,7 +89,7 @@ For HTML, though, we're going to take advantage of something called server-side 
 
 1. Visit `http://localhost:3000/` in your browser. You should see "General Assembly Rocks!"
 
-  > **Hint**: Remember to stop and restart your server from the Terminal to view any changes. Hit `control + c` to stop your server, and run `node server.js` again to restart it.
+  > **Hint**: Nodemon should automatically refresh with each saved change you make.  If not, remember to stop and restart your server from the Terminal to view any changes. Hit `control + c` to stop your server, and run `nodemon server.js` again to restart it.
 
 
 1. If our `index.hbs` is just plain HTML, we're not taking advantage of templating.  Add the following header to your `index.hbs` jumbotron:
@@ -98,7 +98,7 @@ For HTML, though, we're going to take advantage of something called server-side 
   <h1>{{ name }} is awesome!</h1>
   ```
 
-1. Restart your server and refresh your page. What do you see?
+1. Refresh your page. What do you see?
 
 1. `hbs` uses `{{` ... `}}` to figure out what to interpret as a template. The areas where a template has blanks that need to be filled in with some data are inside `{{` and `}}`.  So, `{{ name }}` makes `hbs` think there should be some `name` data available for it to use to fill in this blank.  Let's get some name data set up. In your server.js file, define a `myName` variable and assign your name to it as a string.
 
@@ -117,7 +117,7 @@ For HTML, though, we're going to take advantage of something called server-side 
 
 Now that we see how `hbs` uses simple data to fill in blanks, let's do something a little more complex -- `hbs` using JavaScript logic to loop over a list of data.
 
-1. Add some starter data  (often called "seed data") to serve when the users view '/'.
+1. Add some starter data  (often called "seed data") to serve when the users view '/ablums'.
 
 
   ```js
@@ -134,22 +134,24 @@ Now that we see how `hbs` uses simple data to fill in blanks, let's do something
     }]
   ```
 
-1.  To have this data show up on the page, we'll need to pass it to the render method. Update the `app.get` method for `/` again so it can also render the `albums` data with the `hbs` template.
+1.  To have this data show up on the page, we'll need to pass it to the render method. Update the `app.get` method for `/albums` again so it can also render the `albums` data with the `hbs` template.
 
   > **Hint**: Add a key-value pair to the object we're already passing to the `render` method.
 
 1. We also need to put a blank in our html template where the data will be filled in.
 
   ```html
-  <!-- index.hbs -->
+  <!-- albums.hbs -->
   <h1>Your Albums</h1>
 
   {{#list albums}}
     <h3>{{title}} : </h3>
   {{/list}}
   ```
-  ```
-  Handlebars.registerHelper('list', function(context, options) {
+
+  ```js
+  // server.js
+  hbs.registerHelper('list', function(context, options) {
   var ret = "<ul>";
 
   for(var i=0, j=context.length; i<j; i++) {
@@ -160,7 +162,7 @@ Now that we see how `hbs` uses simple data to fill in blanks, let's do something
   });
   ```
 
-3. Restart your server and refresh the page. You should see a list of artwork titles.
+3. Restart your server and refresh the page. You should see a list of album titles.
 
 4. Modify the basic template above so that the artist name is also shown with the title of each album.  
 
@@ -180,13 +182,13 @@ Now that we see how `hbs` uses simple data to fill in blanks, let's do something
 
 1. Get a 'console.log("I live to serve")' from your `scripts.js` to appear in your browser dev tools console.
 
-1. Get a custom style to work on your index.ejs page.
+1. Get a custom style to work on your index.hbs page.
 
 **Send Just JSON Data (with No Template)**
 
-So far, we've been using server-side HTML templating with ejs to put the painting data directly into our HTML before we send it.  Now, we'll add an API route that sends back raw JSON data instead of a filled-in HTML page.
+So far, we've been using server-side HTML templating with hbs to put the album data directly into our HTML before we send it.  Now, we'll add an API route that sends back raw JSON data instead of a filled-in HTML page.
 
-We're making a weird app. Paintings and taquerias.  Treat your senses.  
+We're making a weird app. Albums and taquerias.  Treat your senses.  
 
 1. Add some taqueria seed data to your server file.
 
@@ -202,7 +204,7 @@ We're making a weird app. Paintings and taquerias.  Treat your senses.
 1. Add a route to your server side javascript that clients can use to get taqueria data.  The route's path should be `/api/taquerias`.  Instead of `res.send` (for simple strings) or `res.render` (for HTML templates), this route will use `res.json`.
 
 
-  ```
+  ```js
     app.get('/api/taquerias', function (req, res) {
       res.json(taquerias);
     });
@@ -213,7 +215,7 @@ We're making a weird app. Paintings and taquerias.  Treat your senses.
 
 ### Stretch Challenges
 
-1. In your `scripts.js` file, write a jQuery ajax request to get the taqueria data. When the response comes back, display all the taqueria names above the paintings on your site's root page (localhost:3000/).  
+1. In your `scripts.js` file, write a jQuery ajax request to get the taqueria data. When the response comes back, display all the taqueria names above the albums on your site's root page (localhost:3000/).  
 
   > **Hint**: `$.get('/api/taquerias', function(data){// your code here});`
 
