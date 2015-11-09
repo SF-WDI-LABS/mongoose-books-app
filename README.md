@@ -117,7 +117,7 @@ For HTML, though, we're going to take advantage of something called server-side 
 
 Now that we see how `hbs` uses simple data to fill in blanks, let's do something a little more complex -- `hbs` using JavaScript logic to loop over a list of data.
 
-1. Add some starter data  (often called "seed data") to serve when the users view '/ablums'.
+1. Add some starter data  (often called "seed data") to serve when the users view '/albums'.
 
 
   ```js
@@ -178,7 +178,7 @@ Now that we see how `hbs` uses simple data to fill in blanks, let's do something
     app.use(express.static('public'));
   ```
 
-1. Add your scripts and styles files to the `<head>` of your index.ejs
+1. Add your scripts and styles files to the `<head>` of your index.hbs
 
 1. Get a 'console.log("I live to serve")' from your `scripts.js` to appear in your browser dev tools console.
 
