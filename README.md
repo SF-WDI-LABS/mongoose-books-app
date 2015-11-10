@@ -8,8 +8,8 @@
 
 1. **Only if you do not have node and npm installed**:
   Install Node & NPM   
-  * Standalone installer: [https://nodejs.org/download/](https://nodejs.org/download/)   
-  * Homebrew: [http://blog.teamtreehouse.com/install-node-js-npm-mac](http://blog.teamtreehouse.com/install-node-js-npm-mac)  
+  * <a href="https://nodejs.org/download/" target="_blank">Standalone installer</a>   
+  * <a href="http://blog.teamtreehouse.com/install-node-js-npm-mac" target="_blank">Homebrew</a>  
     1. To install Homebrew:
 
         ```bash
@@ -62,7 +62,7 @@
 
 All of the files and data for a website usually live on its server(s) and are sent to clients when they request it.  So, even files like HTML and CSS that are only front end related have to get to our users through our server.
 
-We could just send along a lot of static files -- and we'll look at how to do that with Express a little later today. In that case, we'd make a separate jQuery AJAX request for any of our data we wanted to display.
+We could just send along a lot of static files -- and we'll look at how to do that with Express a little later. In that case, we'd make a separate jQuery AJAX request for any of our data we wanted to display.
 
 For HTML, though, we're going to take advantage of something called server-side templating.  Server-side HTML templating basically lets us put data into an HTML file before the server sends it over to the client. The template is like a version of an HTML file with blanks, and we let a server-side "view engine" know how to fill them in with the server's data.
 
@@ -85,7 +85,7 @@ For HTML, though, we're going to take advantage of something called server-side 
 
 1. Change the `app.get` route to render the template file instead of just sending back a string.
 
-  > **Hint**: The method you'll need to use is [`res.render`](http://expressjs.com/api.html#res.render).
+  > **Hint**: The method you'll need to use is <a href="http://expressjs.com/api.html#res.render" target="_blank">res.render</a>.
 
 1. Visit `http://localhost:3000/` in your browser. You should see "General Assembly Rocks!"
 
@@ -180,7 +180,7 @@ Now that we see how `hbs` uses simple data to fill in blanks, let's do something
 
 1. Add your scripts and styles files to the `<head>` of your index.hbs
 
-1. Get a 'console.log("I live to serve")' from your `scripts.js` to appear in your browser dev tools console.
+1. Get a 'console.log("I live to serve.")' from your `scripts.js` to appear in your browser dev tools console.
 
 1. Get a custom style to work on your index.hbs page.
 
@@ -220,7 +220,7 @@ We're making a weird app. Albums and taquerias.  Treat your senses.
   > **Hint**: `$.get('/api/taquerias', function(data){// your code here});`
 
 
-1. Add a `vendor` folder to your project. The `vendor` folder is traditionally used for third-party (external) library code.  Download Bootstrap's CSS and JavaScript files and add them to the `vendor` folder. Can you include Bootstrap in your project from this location instead of the CDN? What is the benefit of having a separate `vendor` folder for external front-end libraries?
+2. Add a `vendor` folder to your project. The `vendor` folder is traditionally used for third-party (external) library code.  Download Bootstrap's CSS and JavaScript files and add them to the `vendor` folder. Can you include Bootstrap in your project from this location instead of the CDN? What is the benefit of having a separate `vendor` folder for external front-end libraries?
 
   > **Hint**: Remember to serve the static vendor files to make them available to your front end.
 
@@ -229,8 +229,4 @@ We're making a weird app. Albums and taquerias.  Treat your senses.
     app.use(express.static('vendor'));
   ```
 
-1. Add an image to your `public/images` folder and display it in `index.hbs`. Note: this is where Ganesh is coming from in the solutions.
-
-<!-- 1. Add a post method to `/api/taquerias` and push a new taqueria into the array.
-
-1. Add a post method to `/api/paintings` and push a new painting into the array. -->
+3. Add an image to your `public/images` folder and display it in `index.hbs`. Note: this is where Ganesh is coming from in the solutions.
