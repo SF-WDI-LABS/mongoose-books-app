@@ -30,6 +30,11 @@ var albums = [
 
 
 
+app.get('/api/albums', function(req,res) {
+  res.json(albums);
+});
+
+
 // define a root route: localhost:3000/
 app.get('/', function (req, res) {
   // send the text 'Hello World!' when someone visits localhost:3000/
