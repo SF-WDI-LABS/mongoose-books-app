@@ -13,6 +13,9 @@ app.use(function(req, res, next) {
   next();
 });
 
+// serve static files in public
+app.use(express.static('public'));
+
 
 // server.js
 var albums = [
