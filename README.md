@@ -183,4 +183,4 @@ We're making a weird app. Albums and taquerias.  Treat your senses.
     app.use(express.static('vendor'));
   ```
 
-3. Add an image to your `public/images` folder and display it in `index.hbs`.
+3. Add an image to your `public/images` folder and display it in `index.html`.
