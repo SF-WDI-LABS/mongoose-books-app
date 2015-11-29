@@ -86,7 +86,7 @@
 
   > Restart your server and you should see our albums when you use postman to request the `http://localhost:3000/api/albums` URL.  You could also try using curl: `curl -X GET http://localhost:3000/api/albums` or just your browser.
 
-1. Let's get this working with our index page now.  In your browser, open `index.html` and then open the javascript console.  You should see 'Sanity Check: JS is working!'  Try running the following ajax request in the javascript console:
+1. Let's get this working with our index page now.  In your browser, `open index.html` and then open the javascript console.  You should see 'Sanity Check: JS is working!'  Try running the following ajax request in the javascript console:
 
   ```js
   $.ajax({
@@ -127,7 +127,8 @@ Let's set a route to serve our `index.html`.  We're just going to serve this on 
     app.use(express.static('public'));
   ```
 
-1. Change the index page `<head>` to use the new paths.
+1. Change the index page `<head>` to use the new paths.  
+  > Hint: If your server is running you can visit css and js files in the browser as well.
 
 1. Get a `console.log("Sanity Check: JS is working!")` from your `base.js` to appear in your browser dev tools console.
 
