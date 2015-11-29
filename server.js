@@ -16,6 +16,9 @@ app.use(function(req, res, next) {
 // define a root route: localhost:3000/
 app.get('/', function (req, res) {
   // send the text 'Hello World!' when someone visits localhost:3000/
+  console.log('req = ', req);
+  console.log('res = ', res);
+
   res.send('Hello World!');
 });
 
