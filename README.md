@@ -49,7 +49,7 @@
       res.send('Hello World!');
     });
 
-    var server = app.listen(process.env.PORT || 3000, function () {
+    app.listen(process.env.PORT || 3000, function () {
       console.log('Example app listening at http://localhost:3000/');
     });
   ```
@@ -96,7 +96,7 @@
            method: 'GET',
            url: 'http://localhost:3000/api/albums',
            success: function(data) { console.log(data) },
-           error: function(e) { console.log('uh oh') }
+           error: function() { console.log('uh oh') }
          });
   ```
   > Note: you must be on a page with jQuery in order to use .ajax in the browser console!  Fortunately the included index.js does have jQuery.
