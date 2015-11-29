@@ -74,12 +74,15 @@
       { title: 'Cupid Deluxe',
         artist: 'Blood Orange'
       },
-      { title: 'M3LL155X - EP',
+      {
+        title: 'M3LL155X - EP',
         artist: 'FKA twigs'
       },
-      { title: 'Fake History',
+      {
+        title: 'Fake History',
         artist: 'letlive.'
-    }]
+      }
+    ];
   ```
 
 1.  To have this data be accessible; first, we'll need to serve it. Add an `app.get` method for the route `/api/albums`.  Use `res.json(albums)` to respond with a JSON object constructed from our albums variable.
@@ -148,7 +151,7 @@ We're making a weird app. Albums and taquerias.  Treat your senses.
       { name: "La Taqueria" },
       { name: "El Farolito" },
       { name: "Taqueria Cancun" }
-    ]
+    ];
   ```
 
 1. Add a route to your server side javascript that clients can use to get taqueria data.  The route's path should be `/api/taquerias`.  Instead of `res.send` (for simple strings) or `res.sendFile`, this route will use `res.json`.
