@@ -20,7 +20,7 @@
 
 **Initialize a Node.js Project with Express**
 
-1. Make a directory called `simple-express`. From inside your `simple-express` directory, enter the Terminal command `npm init`. It asks a series of questions about your project and uses the information to create a `package.json` file for you. For now, we'll use all of the defaults except "entry point". Type in `server.js` for your entry point, and then you can just hit enter until `npm init` is done.  
+1. Go to your `~/dev` directory and clone this repo.  (You don't need to fork.)  From inside your `express-intro` directory, enter the Terminal command `npm init`. It asks a series of questions about your project and uses the information to create a `package.json` file for you. For now, we'll use all of the defaults except "entry point". Type in `server.js` for your entry point, and then you can just hit enter until `npm init` is done.  
 
 2. Add express to the local project using `npm`. Use the `save` option so that NPM automatically adds express to your dependencies in `package.json`.
 
@@ -44,7 +44,6 @@
       res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
       next();
     });
-
 
     app.get('/', function (req, res) {
       res.send('Hello World!');
@@ -85,9 +84,9 @@
 
 1.  To have this data be accessible; first, we'll need to serve it. Add an `app.get` method for the route `/api/albums`.  Use `res.json(albums)` to respond with a JSON object constructed from our albums variable.
 
-  > Restart your server and you should our albums when you use postman to request http://localhost:3000/api/albums  You could also try using curl: `curl -X GET http://localhost:3000/api/albums` or just your browser.
+  > Restart your server and you should see our albums when you use postman to request the `http://localhost:3000/api/albums` URL.  You could also try using curl: `curl -X GET http://localhost:3000/api/albums` or just your browser.
 
-1. Let's get this working with our index page now.  Open `index.html` and open the javascript console.  Try running the following ajax request in the javascript console:
+1. Let's get this working with our index page now.  In your browser, open `index.html` and then open the javascript console.  You should see 'Sanity Check: JS is working!'  Try running the following ajax request in the javascript console:
 
   ```js
   $.ajax({
@@ -105,11 +104,9 @@
 
   Dig into those and see what they look like.
 
-  Next edit `base.js` to display this data on your `index.html` page using jQuery.  Remember to put your code in `$(document).ready(function() {})`
+3. Next edit `base.js` to display this data on your `index.html` page using jQuery.  Decide how you want it to look and remember to put your code in `$(document).ready(function() {})`
 
-3. Restart your server and refresh the page. You should see a list of album titles.
-
-4. Modify the basic template above so that the artist name is also shown with the title of each album.  
+4. Restart your server and refresh the page. You should see a list of album titles.
 
 **Serve our index page**
 
@@ -130,9 +127,11 @@ Let's set a route to serve our `index.html`.  We're just going to serve this on 
 
 1. Change the index page `<head>` to use the new paths.
 
-1. Get a 'console.log("Sanity Check: JS is working!")' from your `base.js` to appear in your browser dev tools console.
+1. Get a `console.log("Sanity Check: JS is working!")` from your `base.js` to appear in your browser dev tools console.
 
 1. Get the css styles in `styles.css` working again on the index page.
+
+1. Everything should be working again now and you should see your albums when you visit `localhost:3000`.  If not, fix it!
 
 **Challenge**
 
