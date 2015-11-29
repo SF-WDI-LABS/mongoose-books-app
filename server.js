@@ -13,6 +13,23 @@ app.use(function(req, res, next) {
   next();
 });
 
+
+// server.js
+var albums = [
+  { title: 'Cupid Deluxe',
+    artist: 'Blood Orange'
+  },
+  { title: 'M3LL155X - EP',
+    artist: 'FKA twigs'
+  },
+  { title: 'Fake History',
+    artist: 'letlive.'
+}];
+
+
+
+
+
 // define a root route: localhost:3000/
 app.get('/', function (req, res) {
   // send the text 'Hello World!' when someone visits localhost:3000/
