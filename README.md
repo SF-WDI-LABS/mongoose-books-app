@@ -93,18 +93,20 @@
            method: 'GET',
            url: 'http://localhost:3000/api/albums',
            success: function(data) { console.log(data) },
-           failure: function() { console.log('uh oh') }
+           error: function(e) { console.log('uh oh') }
          });
   ```
+  > Note: you must be on a page with jQuery in order to use .ajax in the browser console!  Fortunately the included index.js does have jQuery.
 
   You should get something back like:
   ```
   [Object, Object, Object]
   ```
-
   Dig into those and see what they look like.
 
-3. Next edit `app.js` to display this data on your `index.html` page using jQuery.  Decide how you want it to look and remember to put your code in `$(document).ready(function() {})`
+3. Next edit `app.js` to run the same ajax call as above and console log the data.  Remember to put your code in `$(document).ready(function() {})`
+
+3. Once you have that, edit `app.js` to display this data on your `index.html` page using jQuery.  Decide how you want it to look.
 
 4. Restart your server and refresh the page. You should see a list of album titles.
 
@@ -116,7 +118,7 @@ Let's set a route to serve our `index.html`.  We're just going to serve this on 
 
 **Add Static Files (CSS, JS, Images)**
 
-1. Make a directory in your project called `public`; then create `public/css`, `public/js` and `public/images` subdirectories.  Move `styles.css`, and `app.js`, into their public subdirectories.  These files are called static files.
+1. Make a directory in your project called `public`; then create `public/css`, `public/js` and `public/images` subdirectories.  Move `styles.css`, and `base.js`, into their public subdirectories.  These files are called static files.
 
 1. Set up the express app to serve the static files (actually, the whole public directory.)
 
@@ -127,7 +129,7 @@ Let's set a route to serve our `index.html`.  We're just going to serve this on 
 
 1. Change the index page `<head>` to use the new paths.
 
-1. Get a `console.log("Sanity Check: JS is working!")` from your `app.js` to appear in your browser dev tools console.
+1. Get a `console.log("Sanity Check: JS is working!")` from your `base.js` to appear in your browser dev tools console.
 
 1. Get the css styles in `styles.css` working again on the index page.
 
