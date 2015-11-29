@@ -49,7 +49,7 @@
       res.send('Hello World!');
     });
 
-    var server = app.listen(process.env.PORT || 3000, function () {
+    app.listen(process.env.PORT || 3000, function () {
       console.log('Example app listening at http://localhost:3000/');
     });
   ```
@@ -74,12 +74,15 @@
       { title: 'Cupid Deluxe',
         artist: 'Blood Orange'
       },
-      { title: 'M3LL155X - EP',
+      {
+        title: 'M3LL155X - EP',
         artist: 'FKA twigs'
       },
-      { title: 'Fake History',
+      {
+        title: 'Fake History',
         artist: 'letlive.'
-    }]
+      }
+    ];
   ```
 
 1.  To have this data be accessible; first, we'll need to serve it. Add an `app.get` method for the route `/api/albums`.  Use `res.json(albums)` to respond with a JSON object constructed from our albums variable.
@@ -93,7 +96,7 @@
            method: 'GET',
            url: 'http://localhost:3000/api/albums',
            success: function(data) { console.log(data) },
-           error: function(e) { console.log('uh oh') }
+           error: function() { console.log('uh oh') }
          });
   ```
   > Note: you must be on a page with jQuery in order to use .ajax in the browser console!  Fortunately the included index.js does have jQuery.
@@ -148,7 +151,7 @@ We're making a weird app. Albums and taquerias.  Treat your senses.
       { name: "La Taqueria" },
       { name: "El Farolito" },
       { name: "Taqueria Cancun" }
-    ]
+    ];
   ```
 
 1. Add a route to your server side javascript that clients can use to get taqueria data.  The route's path should be `/api/taquerias`.  Instead of `res.send` (for simple strings) or `res.sendFile`, this route will use `res.json`.
@@ -180,4 +183,4 @@ We're making a weird app. Albums and taquerias.  Treat your senses.
     app.use(express.static('vendor'));
   ```
 
-3. Add an image to your `public/images` folder and display it in `index.hbs`.
+3. Add an image to your `public/images` folder and display it in `index.html`.
