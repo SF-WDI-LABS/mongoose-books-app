@@ -41,7 +41,8 @@ app.get('/', function (req, res) {
   console.log('req = ', req);
   console.log('res = ', res);
 
-  res.send('Hello World!');
+  //res.send('Hello World!');
+  res.sendFile('index.html' , { root : __dirname});
 });
 
 // listen for connections on port 3000 or a port set in process.env.PORT
