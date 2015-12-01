@@ -71,7 +71,8 @@
   ```js
     // server.js
     var albums = [
-      { title: 'Cupid Deluxe',
+      { 
+        title: 'Cupid Deluxe',
         artist: 'Blood Orange'
       },
       {
