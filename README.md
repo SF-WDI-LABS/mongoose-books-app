@@ -34,7 +34,7 @@
 
   ```js
     // server.js
-    // SERVER SIDE JAVASCRIPT
+    // SERVER-SIDE JAVASCRIPT
     var express = require('express');
     var app = express();
 
@@ -115,9 +115,29 @@
 
 **Serve our index page**
 
-Let's set a route to serve our `index.html`.  We're just going to serve this on the route `/` so change the current 'hello world' route to instead `res.sendFile('index.html' , { root : __dirname});`.  This will just send the `index.html` file.
+Let's set a route to serve our `index.html`.  We're just going to serve this on the route `/` for now.
 
-  > If you restart your server now and visit 'localhost:3000' in the browser, you'll notice the site looks a little different.  That's because we're not serving the js and css files it needs.  Let's fix that.
+1. First let's be sure we follow the proper file location structure; so move `index.html` into a new `views` directory.  (Create the directory.)
+
+_A good express file tree structure_:
+
+```
+├── server.js  // your server code
+├── package.json    // lists dependencies; changed by npm install --save somePackage
+├── public  // i.e. client-side
+│   ├── images  // images to serve to client
+│   ├── javascripts
+│       └── app.js   // client-side javascript file
+│   └── stylesheets
+│       └── style.css
+│   └── vendor // includes jQuery & bootstrap if we choose not to use CDN
+└── views  // html files that we'll serve
+│   ├── index.html
+```
+
+1. Since we're just going to serve this on the root route, `/`, change the current 'hello world' route to instead `res.sendFile('views/index.html' , { root : __dirname});`.  This will just send the `index.html` file.
+
+  > If you restart your server now and visit 'localhost:3000' in the browser, you'll notice the site looks a little different.  That's because we're not serving the js and css files it needs.  Let's fix that next.
 
 **Add Static Files (CSS, JS, Images)**
 
@@ -164,7 +184,6 @@ We're making a weird app. Albums and taquerias.  Treat your senses.
   ```
 
 1. Navigate to http://localhost:3000/api/taquerias (remember to restart your server first!) and check that the data is showing up.
-
 
 
 1. In your `app.js` file, write a jQuery ajax request to get the taqueria data. When the response comes back, display all the taqueria names above the albums on your site's root page (localhost:3000/).  
