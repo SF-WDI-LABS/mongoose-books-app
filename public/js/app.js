@@ -11,7 +11,7 @@ $(document).ready(function(){
            console.log('uh oh');
            $('#albumTarget').text('Failed to load albums, is the server working?');
          }
-       });
+        });
 
 
 });
