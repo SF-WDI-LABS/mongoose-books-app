@@ -131,7 +131,7 @@ _A good express file tree structure_:
 │       └── app.js   // client-side javascript file
 │   └── stylesheets
 │       └── style.css
-│   └── vendor // includes jQuery & bootstrap if we choose not to use CDN
+├── vendor // an optional 2nd public directory that includes jQuery & bootstrap if we choose not to use a CDN
 └── views  // html files that we'll serve
 │   ├── index.html
 ```
