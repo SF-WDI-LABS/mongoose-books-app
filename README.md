@@ -20,7 +20,7 @@
 
 **Initialize a Node.js Project with Express**
 
-1. Go to your `~/dev` directory and clone this repo.  (You don't need to fork.)  From inside your `express-intro` directory, enter the Terminal command `npm init`. It asks a series of questions about your project and uses the information to create a `package.json` file for you. For now, we'll use all of the defaults except "entry point". Type in `server.js` for your entry point, and then you can just hit enter until `npm init` is done.  
+1. Go to your `~/wdi` directory and clone this repo.  (You don't need to fork.)  From inside your `express-intro` directory, enter the Terminal command `npm init`. It asks a series of questions about your project and uses the information to create a `package.json` file for you. For now, we'll use all of the defaults except "entry point". Type in `server.js` for your entry point, and then you can just hit enter until `npm init` is done.  
 
 2. Add express to the local project using `npm`. Use the `save` option so that NPM automatically adds express to your dependencies in `package.json`.
 
@@ -71,7 +71,7 @@
   ```js
     // server.js
     var albums = [
-      { 
+      {
         title: 'Cupid Deluxe',
         artist: 'Blood Orange'
       },
