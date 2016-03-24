@@ -28,6 +28,8 @@
   npm install express --save
   ```
 
+  Notice that a new folder called `node_modules` was created. Open it up and you'll see that there is an `express` folder. `node_modules` is where the dependencies in `package.json` are downloaded to.
+
 **Express Hello World!**
 
 1. Create a `server.js` file and add this basic hello world code:
