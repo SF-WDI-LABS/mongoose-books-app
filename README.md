@@ -124,21 +124,21 @@ At this point, `server.js` and our client-side files (`index.html`, `app.js`, an
 
 1. First let's be sure we follow a good convention for file location and directory structure. This will help a lot when organizing larger projects.  Move `index.html` into a new `views` directory. (Create the directory first.) 
 
-_A good express file tree structure_:
-
-```
-├── server.js  // your server code
-├── package.json    // project info and dependencies; changed by npm init or npm install --save somePackage
-├── public  // i.e. client-side
-│   ├── images  // images to serve to client
-│   ├── js  // or scripts or javascripts
-│       └── app.js   // client-side javascript file
-│   └── css  // or styles or stylesheets
-│       └── style.css
-├── vendor // an optional 2nd public directory that includes jQuery & bootstrap if we choose not to use a CDN
-└── views  // html files that we'll serve
-│   ├── index.html
-```
+  _A good express file tree structure_:
+  
+  ```
+  ├── server.js  // your server code
+  ├── package.json    // project info and dependencies; changed by npm init or npm install --save somePackage
+  ├── public  // i.e. client-side
+  │   ├── images  // images to serve to client
+  │   ├── js  // or scripts or javascripts
+  │       └── app.js   // client-side javascript file
+  │   └── css  // or styles or stylesheets
+  │       └── style.css
+  ├── vendor // an optional 2nd public directory that includes jQuery & bootstrap if we choose not to use a CDN
+  └── views  // html files that we'll serve
+  │   ├── index.html
+  ```
 
 1. We're just going to serve our index on the root route, `/`, so change the current GET `/` route from serving the string `'hello world'` to instead sending the `index.html` file, with `res.sendFile('views/index.html' , { root : __dirname});`. Curious about what this does? Try logging `__dirname` to your console.
 
