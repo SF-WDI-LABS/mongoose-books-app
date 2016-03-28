@@ -120,9 +120,7 @@
 
 **Serve our index page**
 
-At this point, `server.js` and our client-side files (`index.html`, `app.js`, and `style.css`) are only connected by the ajax request made in `app.js`. We're still each opening `index.html` as a file on one client, one laptop. If we ever want to make these front-end files available on the web, we need a server to handle sending the files to any client who requests them.
-
-Conveniently, we have a server set up already! Let's make a route to serve our `index.html`.  We're just going to serve the index on the route GET `/` for now.
+At this point, `server.js` and our client-side files (`index.html`, `app.js`, and `style.css`) are only connected by the ajax request made in `app.js`. Let's make a route to serve our `index.html`.  We're just going to serve the index on the route GET `/` for now.
 
 1. First let's be sure we follow a good convention for file location and directory structure. This will help a lot when organizing larger projects.  Move `index.html` into a new `views` directory. (Create the directory first.) 
 
