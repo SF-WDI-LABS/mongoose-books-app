@@ -120,7 +120,7 @@
 
 **Serve our index page**
 
-At this point, `server.js` and our client-side files (`index.html`, `app.js`, and `style.css`) are only connected by the ajax request made in `app.js`. Let's make a route to serve our `index.html`.  We're just going to serve the index on the route GET `/` for now.
+At this point, `server.js` and our client-side files (`index.html`, `app.js`, and `styles.css`) are only connected by the ajax request made in `app.js`. Let's make a route to serve our `index.html`.  We're just going to serve the index on the route GET `/` for now.
 
 1. First let's be sure we follow a good convention for file location and directory structure. This will help a lot when organizing larger projects.  Move `index.html` into a new `views` directory. (Create the directory first.) 
 
@@ -131,10 +131,10 @@ At this point, `server.js` and our client-side files (`index.html`, `app.js`, an
   ├── package.json    // project info and dependencies; changed by npm init or npm install --save somePackage
   ├── public  // i.e. client-side
   │   ├── images  // images to serve to client
-  │   ├── js  // or scripts or javascripts
+  │   ├── scripts  // or js
   │       └── app.js   // client-side javascript file
-  │   └── css  // or styles or stylesheets
-  │       └── style.css
+  │   └── styles // or css
+  │       └── styles.css
   ├── vendor // an optional 2nd public directory that includes jQuery & bootstrap if we choose not to use a CDN
   └── views  // html files that we'll serve
   │   ├── index.html
@@ -148,7 +148,7 @@ At this point, `server.js` and our client-side files (`index.html`, `app.js`, an
 
 **Add Static Files (CSS, JS, Images)**
 
-1. Make a directory in your project called `public`; then create `public/css`, `public/js` and `public/images` subdirectories.  Move `style.css`, and `app.js`, into their public subdirectories.  These files are called static files. (You can delete the old directories they were in.)
+1. Make a directory in your project called `public`; then create `public/scripts`, `public/styles` and `public/images` subdirectories.  Move `styles.css`, and `app.js`, into their public subdirectories.  These files are called static files. (You can delete the old directories they were in.)
 
 1. Set up the express app to serve the static files (actually, the whole public directory.)
 
@@ -157,12 +157,9 @@ At this point, `server.js` and our client-side files (`index.html`, `app.js`, an
     app.use(express.static('public'));
   ```
 
-1. Change the index page `<head>` to use the new file paths.  
-  > Hint: If your server is running, you can visit css and js files in the browser as well.
-
 1. Get a `console.log("Sanity Check: JS is working!")` from your `app.js` to appear in your browser dev tools console.
 
-1. Get the css styles in `style.css` working again on the index page.
+1. Get the css styles in `styles.css` working again on the index page.
 
 1. Everything should be working again now, and you should see your albums when you visit `localhost:3000`.  If not, fix it!
 
