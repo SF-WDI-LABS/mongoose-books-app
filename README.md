@@ -2,6 +2,8 @@
 
 ### Base Challenges - Build an Express App
 
+Solution in the solution branch.
+
 **Check Install**
 
 1. You should have Node.js and NPM installed from installfest. Run the Terminal commands `which node` and `which npm` to check that they are installed. If they are installed, you will see a file path after each command, like `/usr/local/bin/node`.
