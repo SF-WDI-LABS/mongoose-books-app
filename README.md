@@ -60,7 +60,7 @@ Solution in the solution branch.
 
 1. Add a comment above each line of code saying what each line does.
 
-  > **Hint**: Reference the documentation linked in the README.  
+  > **Hint**: Reference the documentation linked in the README for today's module. 
   > **Hint**: `process.env.PORT || 3000` means "in production use the production port, otherwise use 3000 (for development)".
 
 1. Run `node server.js` in the Terminal. You should see 'Example app listening at http://localhost:3000/' _in the Terminal_.  When we're using express, this is where our server-side console logs show up!  Also, visit `http://localhost:3000/` in your browser. You should see "Hello World!"  The browser console only shows client-side console outputs.
