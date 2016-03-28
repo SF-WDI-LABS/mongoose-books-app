@@ -61,9 +61,9 @@
   > **Hint**: Reference the documentation linked in the README.  
   > **Hint**: `process.env.PORT || 3000` means "in production use the production port, otherwise use 3000 (for development)".
 
-1. Run `node server.js` in the Terminal. You should see 'Example app listening at http://localhost:3000/' _in the Terminal_.  When we're using express, this is where our server-side console logs show up!  Also, visit `http://localhost:3000/` in your browser. You should see "Hello World!"  The browser console only shows client-side console outputs. 
+1. Run `node server.js` in the Terminal. You should see 'Example app listening at http://localhost:3000/' _in the Terminal_.  When we're using express, this is where our server-side console logs show up!  Also, visit `http://localhost:3000/` in your browser. You should see "Hello World!"  The browser console only shows client-side console outputs.
 
-1. Console log the `req` (request) and the `res` (response) objects inside your server code's `app.get` method for the `/` path. (The `/` path is often called the "root" path.) Restart the server and briefly check out what the `req` and `res` are. 
+1. Console log the `req` (request) and the `res` (response) objects inside your server code's `app.get` method for the `/` path. (The `/` path is often called the "root" path.) Restart the server and briefly check out what the `req` and `res` are.
 
 
 **Add Some Data on the Server**
@@ -98,11 +98,19 @@
 
   ```js
   $.ajax({
-           method: 'GET',
-           url: 'http://localhost:3000/api/albums',
-           success: function handleSuccess(json) { console.log(json) },
-           error: function handleError() { console.log('uh oh') }
-         });
+     method: 'GET',
+     url: 'http://localhost:3000/api/albums',
+     success: handleSuccess,
+     error: handleError
+   });
+
+   function handleSuccess(json) {
+     console.log(json);
+   }
+
+   function handleError(xhr, status, errorThrown) {
+     console.log('uh oh');
+   }
   ```
   > Note: you must be on a page with jQuery in order to use .ajax in the browser console!  Fortunately, the included index.js does have jQuery.
 
@@ -122,10 +130,10 @@
 
 At this point, `server.js` and our client-side files (`index.html`, `app.js`, and `styles.css`) are only connected by the ajax request made in `app.js`. Let's make a route to serve our `index.html`.  We're just going to serve the index on the route GET `/` for now.
 
-1. First let's be sure we follow a good convention for file location and directory structure. This will help a lot when organizing larger projects.  Move `index.html` into a new `views` directory. (Create the directory first.) 
+1. First let's be sure we follow a good convention for file location and directory structure. This will help a lot when organizing larger projects.  Move `index.html` into a new `views` directory. (Create the directory first.)
 
   _A good express file tree structure_:
-  
+
   ```
   ├── server.js  // your server code
   ├── package.json    // project info and dependencies; changed by npm init or npm install --save somePackage
@@ -142,7 +150,7 @@ At this point, `server.js` and our client-side files (`index.html`, `app.js`, an
 
 1. We're just going to serve our index on the root route, `/`, so change the current GET `/` route from serving the string `'hello world'` to instead sending the `index.html` file, with `res.sendFile('views/index.html' , { root : __dirname});`. Curious about what this does? Try logging `__dirname` to your console.
 
-  > If you restart your server now and visit 'localhost:3000' in the browser, you'll notice the site now shows the contents of the html file instead of just the hello world message! Congratulations; you now have a server serving a page! 
+  > If you restart your server now and visit 'localhost:3000' in the browser, you'll notice the site now shows the contents of the html file instead of just the hello world message! Congratulations; you now have a server serving a page!
 
   > But the page looks a little different than when we just opened it as a file, and you'll see some errors in the console.  That's because we're not yet serving the js and css files the page needs.  Let's fix that next.
 
@@ -195,14 +203,14 @@ We're making a weird app. Albums and taquerias.  Treat your senses.
   <details><summary> Want a reminder of the ajax call structure? Click here!</summary>
     ```js
     $.ajax({
-      method: 'GET', 
-      url: '/api/taquerias', 
+      method: 'GET',
+      url: '/api/taquerias',
       success: handleResponse
     });
 
     function handleResponse(json) {
       // your code here
-    } 
+    }
     ```
 
 
