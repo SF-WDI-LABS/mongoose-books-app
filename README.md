@@ -92,17 +92,17 @@
 
   > Restart your server and you should see our albums when you use postman to request the `http://localhost:3000/api/albums` URL.  You could also try using curl: `curl -X GET http://localhost:3000/api/albums` or just your browser.
 
-1. Let's get this working with our index page now.  In your browser, `open index.html` and then open the javascript console.  You should see 'Sanity Check: JS is working!'  Try running the following ajax request in the javascript console:
+1. Let's get this working with our index page now.  In your browser, open `index.html` and then open the javascript console.  You should see 'Sanity Check: JS is working!'  Try running the following ajax request in the javascript console:
 
   ```js
   $.ajax({
            method: 'GET',
            url: 'http://localhost:3000/api/albums',
-           success: function(data) { console.log(data) },
-           error: function() { console.log('uh oh') }
+           success: function handleSuccess(json) { console.log(json) },
+           error: function handleError() { console.log('uh oh') }
          });
   ```
-  > Note: you must be on a page with jQuery in order to use .ajax in the browser console!  Fortunately the included index.js does have jQuery.
+  > Note: you must be on a page with jQuery in order to use .ajax in the browser console!  Fortunately, the included index.js does have jQuery.
 
   You should get something back like:
   ```
@@ -110,7 +110,7 @@
   ```
   Dig into those and see what they look like.
 
-3. Next edit `app.js` to run the same ajax call as above and console log the data.  Remember to put your code in `$(document).ready(function() {})`
+3. Next edit `app.js` to run the same ajax call as above and console log the data.  Remember to put your code inside the handler for the document ready event: `$(document).on('ready', function() {})`.
 
 3. Once you have that, edit `app.js` to display this data on your `index.html` page using jQuery.  Decide how you want it to look.
 
@@ -120,31 +120,31 @@
 
 Let's set a route to serve our `index.html`.  We're just going to serve this on the route `/` for now.
 
-1. First let's be sure we follow the proper file location structure; so move `index.html` into a new `views` directory.  (Create the directory.)
+1. First let's be sure we follow the proper file location structure; so move `index.html` into a new `views` directory.  (Create the directory first.)
 
 _A good express file tree structure_:
 
 ```
 ├── server.js  // your server code
-├── package.json    // lists dependencies; changed by npm install --save somePackage
+├── package.json    // project info and dependencies; changed by npm init or npm install --save somePackage
 ├── public  // i.e. client-side
 │   ├── images  // images to serve to client
-│   ├── javascripts
+│   ├── js  // or scripts or javascripts
 │       └── app.js   // client-side javascript file
-│   └── stylesheets
+│   └── css  // or styles or stylesheets
 │       └── style.css
 ├── vendor // an optional 2nd public directory that includes jQuery & bootstrap if we choose not to use a CDN
 └── views  // html files that we'll serve
 │   ├── index.html
 ```
 
-1. Since we're just going to serve this on the root route, `/`, change the current 'hello world' route to instead `res.sendFile('views/index.html' , { root : __dirname});`.  This will just send the `index.html` file.
+1. We're just going to serve our index on the root route, `/`, so change the current `/` route from serving `'hello world'` to instead `res.sendFile('views/index.html' , { root : __dirname});`.  This will just send the `index.html` file.
 
-  > If you restart your server now and visit 'localhost:3000' in the browser, you'll notice the site looks a little different.  That's because we're not serving the js and css files it needs.  Let's fix that next.
+  > If you restart your server now and visit 'localhost:3000' in the browser, you'll notice the site looks a little different.  That's because we're not yet serving the js and css files the page needs.  Let's fix that next.
 
 **Add Static Files (CSS, JS, Images)**
 
-1. Make a directory in your project called `public`; then create `public/css`, `public/js` and `public/images` subdirectories.  Move `styles.css`, and `base.js`, into their public subdirectories.  These files are called static files.
+1. Make a directory in your project called `public`; then create `public/css`, `public/js` and `public/images` subdirectories.  Move `style.css`, and `app.js`, into their public subdirectories.  These files are called static files.
 
 1. Set up the express app to serve the static files (actually, the whole public directory.)
 
@@ -156,9 +156,9 @@ _A good express file tree structure_:
 1. Change the index page `<head>` to use the new paths.  
   > Hint: If your server is running you can visit css and js files in the browser as well.
 
-1. Get a `console.log("Sanity Check: JS is working!")` from your `base.js` to appear in your browser dev tools console.
+1. Get a `console.log("Sanity Check: JS is working!")` from your `app.js` to appear in your browser dev tools console.
 
-1. Get the css styles in `styles.css` working again on the index page.
+1. Get the css styles in `style.css` working again on the index page.
 
 1. Everything should be working again now and you should see your albums when you visit `localhost:3000`.  If not, fix it!
 
@@ -191,7 +191,7 @@ We're making a weird app. Albums and taquerias.  Treat your senses.
 
 1. In your `app.js` file, write a jQuery ajax request to get the taqueria data. When the response comes back, display all the taqueria names above the albums on your site's root page (localhost:3000/).  
 
-  > **Hint**: `$.ajax({method: 'GET', url: '/api/taquerias', success: function(data){// your code here} });`
+  > **Hint**: `$.ajax({method: 'GET', url: '/api/taquerias', success: function handleResponse(json){// your code here} });`
 
 
 ### Stretch Challenges
