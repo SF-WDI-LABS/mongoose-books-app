@@ -1,5 +1,7 @@
 console.log("Sanity Check: JS is working!");
+var template;
 var $booksList;
+var allBooks = [];
 
 $(document).ready(function(){
 
@@ -29,15 +31,22 @@ $(document).ready(function(){
 
 });
 
+// helper function to render all posts to view
+// note: we empty and re-render the collection each time our post data changes
+function render () {
+  // empty existing posts from view
+  $booksList.empty();
 
-function handleSuccess(json) {
-  var books = json;
-
-  // pass in data to render in the template
-  var booksHtml = template({ books: books });
+  // pass `allBooks` into the template function
+  var booksHtml = template({ books: allBooks });
 
   // append html to the view
   $booksList.append(booksHtml);
+};
+
+function handleSuccess(json) {
+  allBooks = json;
+  render();
 }
 
 function handleError(e) {
@@ -46,7 +55,9 @@ function handleError(e) {
 }
 
 function newBookSuccess(json) {
-  console.log('yayayayay');
+  console.log(json);
+  allBooks.push(json);
+  render();
 }
 
 function newBookError() {
