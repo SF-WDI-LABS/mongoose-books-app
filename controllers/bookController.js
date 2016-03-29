@@ -1,7 +1,7 @@
 var db = require('../models'),
   bookController = {};
 
-function bookIndex(req, res, next) {
+bookController.index = function(req, res, next) {
   // send all books as JSON response
   console.log(db.Book);
   db.Book.find(function(err, books){
@@ -10,7 +10,7 @@ function bookIndex(req, res, next) {
 }
 
 
-function bookShow(req, res, next) {
+bookController.show = function(req, res, next) {
   // find one book by its id
   db.Book.findById(req.params.id, function(err, book){
     if (err) { return console.log("create error: " + err); }
@@ -19,21 +19,21 @@ function bookShow(req, res, next) {
 
 }
 
-function bookCreate(req, res, next) {
-  // create new book with form data (`req.body`)
-  var newBook = req.body;
+bookController.create = function(req, res, next) {
+  // set up new book with form data (`req.body`)
+  var newBook = new db.Book(req.body);
 
-  // add newBook to database
-  db.Book.create(newBook, function(err, book){
-    if (err) { return console.log("create error: " + err); }
-    console.log("created ", book.title);
+  // save newBook to database
+  newBook.save(function(err, book){
+    if (err) { return console.log("save error: " + err); }
+    console.log("saved ", book.title);
     res.json(book);
   });
 }
 
 
 
-function bookUpdate(req, res, next) {
+bookController.update = function(req, res, next) {
   // get book id from url params (`req.params`)
   var bookId = parseInt(req.params.id);
 
@@ -53,7 +53,7 @@ function bookUpdate(req, res, next) {
 }
 
 
-function bookDestroy(req, res, next) {
+bookController.destroy = function(req, res, next) {
   // get book id from url params (`req.params`)
   var bookId = parseInt(req.params.id);
 
@@ -70,11 +70,5 @@ function bookDestroy(req, res, next) {
 }
 
 
-// add all our functions to the object we'll export
-bookController.bookIndex = bookIndex;
-bookController.bookShow = bookShow;
-bookController.bookCreate = bookCreate;
-bookController.bookDestroy = bookDestroy;
-bookController.bookUpdate = bookUpdate;
-
+// export the bookController object with all its functions
 module.exports = bookController;

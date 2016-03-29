@@ -17,19 +17,19 @@ app.get('/', function (req, res) {
 });
 
 // get all books
-app.get('/api/books', controllers.books.bookIndex);
+app.get('/api/books', controllers.books.index);
 
 // get one book
-app.get('/api/books/:id', controllers.books.bookShow);
+app.get('/api/books/:id', controllers.books.show);
 
 // create new book
-app.post('/api/books', controllers.books.bookCreate);
+app.post('/api/books', controllers.books.create);
 
 // update book
-app.put('/api/books/:id', controllers.books.bookUpdate);
+app.put('/api/books/:id', controllers.books.update);
 
 // delete book
-app.delete('/api/books/:id', controllers.books.bookDestroy);
+app.delete('/api/books/:id', controllers.books.destroy);
 
 app.listen(process.env.PORT || 3000, function () {
   console.log('Example app listening at http://localhost:3000/');
