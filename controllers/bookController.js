@@ -1,16 +1,15 @@
 var db = require('../models'),
   bookController = {};
 
-function bookIndex(req, res, next) {
+bookController.index = function(req, res) {
   // send all books as JSON response
-  console.log(db.Book);
   db.Book.find(function(err, books){
     res.json(books);
   });
 }
 
 
-function bookShow(req, res, next) {
+bookController.show = function(req, res) {
   // find one book by its id
   db.Book.findById(req.params.id, function(err, book){
     if (err) { return console.log("create error: " + err); }
@@ -19,12 +18,11 @@ function bookShow(req, res, next) {
 
 }
 
-function bookCreate(req, res, next) {
+bookController.create = function(req, res) {
   // create new book with form data (`req.body`)
-  var newBook = req.body;
-
+  var newBook = new db.Book(req.body);
   // add newBook to database
-  db.Book.create(newBook, function(err, book){
+  newBook.save(function(err, book){
     if (err) { return console.log("create error: " + err); }
     console.log("created ", book.title);
     res.json(book);
@@ -33,7 +31,7 @@ function bookCreate(req, res, next) {
 
 
 
-function bookUpdate(req, res, next) {
+bookController.update = function(req, res) {
   // get book id from url params (`req.params`)
   var bookId = parseInt(req.params.id);
 
@@ -53,7 +51,7 @@ function bookUpdate(req, res, next) {
 }
 
 
-function bookDestroy(req, res, next) {
+bookController.destory = function(req, res) {
   // get book id from url params (`req.params`)
   var bookId = parseInt(req.params.id);
 
@@ -71,10 +69,4 @@ function bookDestroy(req, res, next) {
 
 
 // add all our functions to the object we'll export
-bookController.bookIndex = bookIndex;
-bookController.bookShow = bookShow;
-bookController.bookCreate = bookCreate;
-bookController.bookDestroy = bookDestroy;
-bookController.bookUpdate = bookUpdate;
-
 module.exports = bookController;

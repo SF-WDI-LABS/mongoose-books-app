@@ -16,6 +16,17 @@ $(document).ready(function(){
     error: handleError
   });
 
+  $('#newBookForm').on('submit', function(e) {
+    e.preventDefault();
+    $.ajax({
+      method: 'POST',
+      url: '/api/books',
+      data: $(this).serialize(),
+      success: newBookSuccess,
+      error: newBookError
+    });
+  });
+
 });
 
 
@@ -32,4 +43,12 @@ function handleSuccess(json) {
 function handleError(e) {
   console.log('uh oh');
   $('#bookTarget').text('Failed to load books, is the server working?');
+}
+
+function newBookSuccess(json) {
+  console.log('yayayayay');
+}
+
+function newBookError() {
+
 }
