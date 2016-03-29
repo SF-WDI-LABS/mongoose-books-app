@@ -77,16 +77,14 @@ function newBookError() {
 function deleteBookSuccess(json) {
   var book = json;
   var bookId = book._id;
-  // find the book to delete by its id
-  var bookToDelete = allBooks.filter(function (book) {
-    console.log(book._id + bookId)
-    return book._id == bookId;
+
+  // if the books list were very long forEach would be a slow tool
+  allBooks.forEach(function(element, index) {
+    if(element._id === bookId) {
+      allBooks.splice(index, 1);
+    }
   });
-  console.log('delete', bookToDelete);
-  console.log('book',book)
-  console.log('all', allBooks.indexOf(bookToDelete))
-  // remove deleted book from all books
-  allBooks.splice(allBooks.indexOf(book), 1);
+
   render();
 }
 
