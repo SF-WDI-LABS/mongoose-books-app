@@ -54,8 +54,9 @@ app.post('/api/books', function (req, res) {
 // app.put('/api/books/:id', controllers.books.update);
 
 // delete book
-app.delete('/api/books/:id', function (req, req) {
+app.delete('/api/books/:id', function (req, res) {
   // get book id from url params (`req.params`)
+  console.log(req.params)
   var bookId = req.params.id;
 
   db.Book.findOneAndRemove({ _id: bookId }, function (err, deletedBook) {

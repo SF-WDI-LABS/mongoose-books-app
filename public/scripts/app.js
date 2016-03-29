@@ -29,6 +29,16 @@ $(document).ready(function(){
     });
   });
 
+  $booksList.on('click', '.deleteBtn', function() {
+    console.log('hi')
+    $.ajax({
+      method: 'DELETE',
+      url: '/api/books/'+$(this).attr('data-id'),
+      success: deleteBookSuccess,
+      error: deleteBookError
+    });
+  });
+
 });
 
 // helper function to render all posts to view
@@ -55,11 +65,31 @@ function handleError(e) {
 }
 
 function newBookSuccess(json) {
-  console.log(json);
+  $('#newBookForm input').val('');
   allBooks.push(json);
   render();
 }
 
 function newBookError() {
+
+}
+
+function deleteBookSuccess(json) {
+  var book = json;
+  var bookId = book._id;
+  // find the book to delete by its id
+  var bookToDelete = allBooks.filter(function (book) {
+    console.log(book._id + bookId)
+    return book._id == bookId;
+  });
+  console.log('delete', bookToDelete);
+  console.log('book',book)
+  console.log('all', allBooks.indexOf(bookToDelete))
+  // remove deleted book from all books
+  allBooks.splice(allBooks.indexOf(book), 1);
+  render();
+}
+
+function deleteBookError() {
 
 }

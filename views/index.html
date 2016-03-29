@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Blank</title>
+    <title>Books App</title>
 
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -38,7 +38,11 @@
   					<script id="books-template" type="text/x-handlebars-template">
   						{{#each books}}
   						  <hr>
-  						  <p>{{title}}</p>
+  						  <p>
+                  <b>{{title}}</b>
+                  by {{author}}
+                  <button type="button" name="button" class="deleteBtn" data-id={{_id}}>Delete</button>
+                </p>
   						{{/each}}
   					</script>
           </div>
