@@ -9,9 +9,9 @@
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
-
     <!-- VENDOR SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 
     <!-- APPLICATION SCRIPTS -->
     <script src="scripts/app.js"></script>
@@ -19,7 +19,20 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="text-center">Under Construction</h1>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h1 class="text-center">Under Construction</h1>
+          <div id='bookTarget'>
+            <!-- handlebars template -->
+  					<script id="books-template" type="text/x-handlebars-template">
+  						{{#each books}}
+  						  <hr>
+  						  <p>{{title}}</p>
+  						{{/each}}
+  					</script>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

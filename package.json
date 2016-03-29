@@ -1,0 +1,23 @@
+{
+  "name": "express-practice",
+  "version": "1.0.0",
+  "description": "### Base Challenges - Build an Express App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sf-wdi-labs/express-intro.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sf-wdi-labs/express-intro/issues"
+  },
+  "homepage": "https://github.com/sf-wdi-labs/express-intro#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "mongoose": "^4.4.10"
+  }
+}
