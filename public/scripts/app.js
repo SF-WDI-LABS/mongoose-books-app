@@ -1,31 +1,35 @@
 console.log("Sanity Check: JS is working!");
+var $booksList;
 
 $(document).ready(function(){
 
+  $booksList = $('#bookTarget');
+
+  // compile handlebars template
+  var source = $('#books-template').html();
+  template = Handlebars.compile(source);
 
   $.ajax({
     method: 'GET',
-    url: 'http://localhost:3000/api/albums',
+    url: '/api/books',
     success: handleSuccess,
     error: handleError
   });
 
-
 });
 
 
-function handleSuccess(json) { 
-  // takes an array of albums and renders them as an unordered list
-  var albums = json;
-  var outputHtml = '<ul>';
-  albums.forEach(function(album) {
-    outputHtml = outputHtml + "<li>" + album.artist + " -- " + album.title + "</li>";
-  });
-  outputHtml += '</ul>';
-  $('#albumTarget').html(outputHtml);
+function handleSuccess(json) {
+  var books = json;
+
+  // pass in data to render in the template
+  var booksHtml = template({ books: books });
+
+  // append html to the view
+  $booksList.append(booksHtml);
 }
 
 function handleError(e) {
   console.log('uh oh');
-  $('#albumTarget').text('Failed to load albums, is the server working?');
+  $('#bookTarget').text('Failed to load books, is the server working?');
 }
