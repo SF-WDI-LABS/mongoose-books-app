@@ -60,48 +60,46 @@ We've already provided a `models/index.js` for you to use.  If you take a look i
   1. requires mongoose
   1. connects to a book-app database
 
-`index.js` will import each model and export an object called `exports` with keys representing each of our models.  That way we can import the entire directory and get all of our models!  
-
-  <details><summary>Here's an example:</summary>
-
-    ```
-
-    ├── models
-    │   ├── index.js
-    │   ├── gargoyle.js
-    │   ├── gnome.js
-    │   ├── goblin.js
-
-    ```
-
-    Inside `index.js` we require each of the other files and export it as one object:
-
-    ```js
-    // models/index.js
-    var mongoose = require("mongoose");
-    mongoose.connect("mongodb://localhost/book-app");
-
-    module.exports.Gargoyle = require("./gargoyle.js");
-    module.exports.Goblin = require("./goblin.js");
-    module.exports.Gnome = require("./gnome.js");
-    ```
-
-    In the end this means that when you require `./models` in `server.js` you get back an object like
-      ```js
-      { Gargoyle: Model, Goblin: Model, Gnome: Model }
-      ```
- </details>
+`index.js` will import each model and export an object called `exports` with keys representing each of our models.  That way we can `require` the entire directory and get all of our models!  
 
 1. Go ahead and import and export your `Book` model in `index.js`.
-  <details><summary>Spoiler alert!</summary>
-  `module.exports.Book = require("./book.js");`
-  </details>
+  ```js
+  // models/index.js
+  module.exports.Book = require("./book.js");
+  ```
+  Now if someone were to `require('./models')` they'd gain access to this database model.
+
+    <details><summary>Here's a module example:</summary>
+
+
+      ├── models
+      │   ├── index.js
+      │   ├── gargoyle.js
+      │   ├── gnome.js
+      │   ├── goblin.js
+
+
+      Inside `index.js` we require each of the other files and export it as one object:
+
+      // models/index.js
+      var mongoose = require("mongoose");
+      mongoose.connect("mongodb://localhost/book-app");
+
+      module.exports.Gargoyle = require("./gargoyle.js");
+      module.exports.Goblin = require("./goblin.js");
+      module.exports.Gnome = require("./gnome.js");
+
+      In the end this means that when you require `./models` in `server.js` you get back an object like
+        { Gargoyle: Model, Goblin: Model, Gnome: Model }
+
+    </details>
+
 
 ## Verifying that this is working
 
-Take a quick look in `seed.js`.  You should see that it `require('./models');` and then later uses `db.Book.create` to load some data into the database.  (The insightful student will also note that it tries to clear the `book-app` database first by deleting all the records.)
+Take a quick look in `seed.js`.  You should see that it does a `require('./models');` and then later uses `db.Book.create` to load some data into the database.  (The insightful student will also note that it tries to clear the `book-app` database first by deleting all the records.)
 
-What's a seed-file you ask?  
+**What's a seed-file you ask?**
 > A seed file is a file used to load pre-made data into our database.  It let's us start-up our app without having to key in data each time.
 
 1. Try running `node seed.js` in your terminal.
@@ -111,8 +109,6 @@ What's a seed-file you ask?
   ```js
   var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
-
-  mongoose.connect("mongodb://localhost/book-app");
 
   var BookSchema = new Schema({
     title: String,
