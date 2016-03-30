@@ -23,8 +23,6 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-
-
 ////////////////////
 //  ROUTES
 ///////////////////
@@ -57,13 +55,31 @@ app.get('/api/books/:id', function (req, res) {
 // create new book
 app.post('/api/books', function (req, res) {
   // create new book with form data (`req.body`)
-  console.log('books create', req.body);
-  var newBook = new db.Book(req.body);
-  newBook.save(function handleDBBookSaved(err, savedBook) {
-    res.json(savedBook);
+  var newBook = new db.Book({
+    title: req.body.title,
+    image: req.body.image,
+    releaseDate: req.body.releaseDate,
+  });
+  // find the author from req.body
+  db.Author.findOne({name: req.body.author}, function(err, author){
+    if (err) {
+      return console.log(err);
+    }
+    // add this author to the book
+    newBook.author = author;
+
+
+    // save newBook to database
+    newBook.save(function(err, book){
+      if (err) {
+        return console.log("save error: " + err);
+      }
+      console.log("saved ", book.title);
+      // send back the book!
+      res.json(book);
+    });
   });
 });
-
 
 // delete book
 app.delete('/api/books/:id', function (req, res) {
