@@ -135,4 +135,29 @@ What's a seed-file you ask?
 Next we'll start to use our new model in `server.js`.
 
 1. Go ahead and open `server.js`.  
-1. Add the correct require statement to `server.js` to import your modules.  `var db = require('./models')`.  This should go near the top.  
+1. Add the correct require statement to `server.js` to import your modules.  `var db = require('./models')`.  This should go near the top as part of the "SETUP and CONFIGURATION".
+1. Now delete the hard-coded books array.  We'll start to replace each route with the correct code to use the database instead.  From now on when we want to get to a book we'll use mongoose methods and access `db.Books`.
+
+1. Find the books index route and replace it with the following code:
+  ```js
+  app.get('/api/books', function (req, res) {
+    // send all books as JSON response
+    db.Book.find(function(err, books){
+      if (err) { return console.log("index error: " + err); }
+      res.json(books);
+    });
+  });
+  ```
+
+1. Restart your server and if you've successfully seeded your database you should see all the seeded books when you refresh the page.
+
+
+## Challenge!
+
+On your own use the mongoose methods to replace the other `/api/books*` routes with mongoose commands.
+
+Make sure you look back to the lecture notes for info on the most important methods like:
+* find
+* findOneAndRemove
+* new
+* save
