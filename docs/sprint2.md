@@ -112,7 +112,10 @@ We have authors listed as just a string inside books, but what happens if we wan
   ```js
   db.Author.remove({}, function(err, authors) {
     db.Author.create(authors_list, function(err, authors){
-      if (err) { return console.log(err); }
+      if (err) {
+        console.log(err);
+        return;
+      }
       console.log("created", authors.length, "authors");
       process.exit();
     });
@@ -157,10 +160,15 @@ Referencing authors is a good choice here because:
         releaseDate: bookData.releaseDate
       });
       db.Author.findOne({name: bookData.name}, function saveBookWithAuthor(err, foundAuthor){
-        if (err) { return console.log(err); }
+        if (err) {
+          console.log(err);
+          return;
+        }
         book.author = foundAuthor;
         book.save(function(err, savedBook){
-          if (err) { return console.log(err); }
+          if (err) {
+            return console.log(err);
+          }
           console.log('saved ' + savedBook.title + ' by ' + foundAuthor.name);
         });
       });
@@ -177,7 +185,10 @@ Referencing authors is a good choice here because:
     db.Book.findById(req.params.id)
       .populate('author')
       .exec(function(err, book){
-        if (err) { return res.status(500).send(err); }
+        if (err) {
+          res.status(500).send(err);
+          return;
+        }
         res.json(book);
       });
 
@@ -196,7 +207,9 @@ Referencing authors is a good choice here because:
       newBook.author = author;
       // add newBook to database
       newBook.save(function(err, book){
-        if (err) { return console.log("create error: " + err); }
+        if (err) { 
+          return console.log("create error: " + err);
+        }
         console.log("created ", book.title);
         res.json(book);
       });
