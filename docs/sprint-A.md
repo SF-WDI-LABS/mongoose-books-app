@@ -54,7 +54,7 @@ First off let's setup mongo and mongoose.
   module.exports = Book;
   ```
 
-## Wait a second.... modules? :question_mark:
+## Wait a second.... modules :grey_question:
 
 We've already provided a `models/index.js` for you to use.  If you take a look in there you should already see that it
   1. requires mongoose
@@ -128,3 +128,11 @@ What's a seed-file you ask?
   </details>
 
 1. You can use robomongo to check out your database.  If you got an error message try to debug, and if you're stuck ask for help.  
+
+
+## Connecting the database to the server
+
+Next we'll start to use our new model in `server.js`.
+
+1. Go ahead and open `server.js`.  
+1. Add the correct require statement to `server.js` to import your modules.  `var db = require('./models')`.  This should go near the top.  
