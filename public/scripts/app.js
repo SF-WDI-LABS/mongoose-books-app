@@ -30,7 +30,6 @@ $(document).ready(function(){
   });
 
   $booksList.on('click', '.deleteBtn', function() {
-    console.log('hi')
     $.ajax({
       method: 'DELETE',
       url: '/api/books/'+$(this).attr('data-id'),
