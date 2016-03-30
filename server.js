@@ -91,7 +91,6 @@ app.post('/api/books/:book_id/character', function (req, res) {
       res.status(404).json({error: "No Book found by this ID"});
     } else {
       // push character into characters array
-      console.log(foundBook)
       foundBook.characters.push(req.body);
       // save the book with the new character
       foundBook.save();
