@@ -1,4 +1,4 @@
-# Sprint A - mongoDB & mongoose
+# Sprint 1 - mongoDB & mongoose
 
 ## 1. You awake inside a new app and look around.
 
