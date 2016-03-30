@@ -17,4 +17,4 @@ At first it's going to be a list of **books**.  Later we'll add in **authors** a
 
 [Sprint 2 - Reference & Populate](docs/sprint2.md)
 
-[Sprint 3 - Embedded](docs/sprint3.md)
+<!-- [Sprint 3 - Embedded](docs/sprint3.md) -->
