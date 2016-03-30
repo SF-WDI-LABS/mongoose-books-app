@@ -18,6 +18,7 @@
   "homepage": "https://github.com/sf-wdi-labs/express-intro#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "mongoose": "^4.4.10"
   }
 }
