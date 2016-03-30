@@ -102,7 +102,7 @@ var BookSchema = new Schema({
   releaseDate: String
 });
 ```
-## 4. Authors, assemble!
+## 3. Authors, assemble!
 
 1. We have all the tools we need to start making authors.  Add the following data to your `seed.js` file.
 <!-- Then add a call to `db.Author.remove` to delete all the old authors, and inside it add a call to `db.Author.create` to create new authors. -->
@@ -198,7 +198,7 @@ var BookSchema = new Schema({
   </details>
 1. Run `node seed.js` in your terminal again to re-add the books and add the new authors.
 
-## 5. Changing your routes
+## 4. Changing your routes
 
 1. Now on to `server.js`. Here's how to change over a few routes:
 
@@ -240,22 +240,23 @@ var BookSchema = new Schema({
   });
   ```
 
-## 6. But the view from here is bad!
+## 5. But the view from here is bad!
 1. When you look at your view, instead of seeing the nicely listed author, you should see the author object.
 ![author object](https://cloud.githubusercontent.com/assets/3010270/14153137/6c0b4432-f66b-11e5-9440-b122c471e746.png)
 
 1. Why is this? Look at the data being returned from the server and fix your `html` to show the author name!
 
-```html
+
 <details><summary>Click to view hint</summary>
+```html
 <p>
   <b>{{title}}</b>
   <!-- just this next line is what needs to be changed! -->
   by {{author.name}}
   <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id={{_id}}>Delete</button>
 </p>
-</details>
 ```
+</details>
 
 
 
