@@ -255,7 +255,11 @@ Referencing authors is a good choice here because:
 
 ## Challenge!
 
+<<<<<<< HEAD
 On your own, use the mongoose methods to replace the other `/api/books*` routes with mongoose commands, taking into account the new referenced data relationship. Start with `GET /api/books`.
+=======
+On your own, use the mongoose methods to replace the other `/api/books*` routes with mongoose commands, taking into account the new referenced data relationship. 
+>>>>>>> sprint2-starting-review
 
 Make sure you look back to the lecture notes for info on the most important methods like:
 * find
