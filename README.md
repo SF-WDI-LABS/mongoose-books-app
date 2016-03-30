@@ -14,3 +14,5 @@ At first it's going to be a list of **books**.  Later we'll add in **authors** a
 
 
 [Sprint 1 - mongoose](docs/sprint1.md)
+
+[Sprint 2 - relationships & reference](docs/sprint2.md)
