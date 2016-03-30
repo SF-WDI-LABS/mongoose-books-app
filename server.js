@@ -63,8 +63,6 @@ app.post('/api/books', function (req, res) {
   });
 });
 
-// update book
-// app.put('/api/books/:id', controllers.books.update);
 
 // delete book
 app.delete('/api/books/:id', function (req, res) {
@@ -79,7 +77,7 @@ app.delete('/api/books/:id', function (req, res) {
 
 
 // Create a character associated with a book
-app.post('/api/books/:book_id/character', function (req, res) {
+app.post('/api/books/:book_id/characters', function (req, res) {
   // Get book id from url params (`req.params`)
   var bookId = req.params.book_id;
   db.Book.findById(bookId, function(err, foundBook) {

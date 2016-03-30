@@ -45,7 +45,7 @@ $(document).ready(function(){
     console.log('new characters')
     $.ajax({
       method: 'POST',
-      url: '/api/books/'+$(this).attr('data-id')+'/character',
+      url: '/api/books/'+$(this).attr('data-id')+'/characters',
       data: $(this).serializeArray(),
       success: newCharacterSuccess,
       error: newCharacterError
