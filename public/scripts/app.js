@@ -20,7 +20,7 @@ $(document).ready(function(){
 
   $('#newBookForm').on('submit', function(e) {
     e.preventDefault();
-    console.log($(this).serializeArray())
+    console.log('new book serialized', $(this).serializeArray());
     $.ajax({
       method: 'POST',
       url: '/api/books',
@@ -42,7 +42,7 @@ $(document).ready(function(){
 
   $booksList.on('submit', '#addCharacterForm', function(e) {
     e.preventDefault();
-    console.log('new characters')
+    console.log('new characters');
     $.ajax({
       method: 'POST',
       url: '/api/books/'+$(this).attr('data-id')+'/characters',
@@ -65,7 +65,7 @@ function render () {
 
   // append html to the view
   $booksList.append(booksHtml);
-};
+}
 
 function handleSuccess(json) {
   allBooks = json;

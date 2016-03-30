@@ -82,7 +82,7 @@ app.post('/api/books/:book_id/characters', function (req, res) {
   // Get book id from url params (`req.params`)
   var bookId = req.params.book_id;
   db.Book.findById(bookId, function(err, foundBook) {
-    console.log(foundBook)
+    console.log(foundBook);
     if (err) {
       res.status(500).json({error: err.message});
     } else if (foundBook === null) {
@@ -114,9 +114,9 @@ app.post('/api/books/:book_id/author', function (req, res) {
     } else {
       // Find a book by that ID and then update it to include the new character. Why would I add it as a set instead of push to it as an array?
       // NOTE is $addToSet saving the character by reference or embedding?
-      console.log('saved',savedCharacter)
+      console.log('saved char', savedCharacter);
       db.Book.findByIdAndUpdate(bookId, {$addToSet: {character: savedCharacter}}, function(err, foundBook) {
-        console.log(foundBook)
+        console.log(foundBook);
         if (err) {
           res.status(500).json({error: err.message});
         } else if (foundBook === null) {
