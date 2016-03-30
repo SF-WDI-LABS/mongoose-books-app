@@ -15,6 +15,49 @@ app.use(express.static('public'));
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
+////////////////////
+//  DATA
+///////////////////
+
+var books = [
+  {
+    id: 15,
+    title: "The Four Hour Workweek",
+    author: "Tim Ferriss",
+    image: "https://s3-us-west-2.amazonaws.com/sandboxapi/four_hour_work_week.jpg",
+    release_date: "April 1, 2007"
+  },
+  {
+    id: 16,
+    title: "Of Mice and Men",
+    author: "John Steinbeck",
+    image: "https://s3-us-west-2.amazonaws.com/sandboxapi/of_mice_and_men.jpg",
+    release_date: "Unknown 1937"
+  },
+  {
+    id: 17,
+    title: "Romeo and Juliet",
+    author: "William Shakespeare",
+    image: "https://s3-us-west-2.amazonaws.com/sandboxapi/romeo_and_juliet.jpg",
+    release_date: "Unknown 1597"
+  }
+]
+
+
+
+
+
+
+
+////////////////////
+//  ROUTES
+///////////////////
+
+
+
+
 // define a root route: localhost:3000/
 app.get('/', function (req, res) {
   res.sendFile('views/index.html' , { root : __dirname});
