@@ -54,7 +54,7 @@ First off let's setup mongo and mongoose.
   module.exports = Book;
   ```
 
-## Wait a second.... modules :grey_question:
+## Wait a second.... what are modules :grey_question:
 
 We've already provided a `models/index.js` for you to use.  If you take a look in there you should already see that it
   1. requires mongoose
