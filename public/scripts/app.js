@@ -78,13 +78,13 @@ function deleteBookSuccess(json) {
   var book = json;
   var bookId = book._id;
 
-  // if the books list were very long forEach would be a slow tool
-  allBooks.forEach(function(element, index) {
-    if(element._id === bookId) {
+  // find the book with the correct ID and remove it from our allBooks array
+  for(var index = 0; index < allBooks.length; index++) {
+    if(allBooks[index]._id === bookId) {
       allBooks.splice(index, 1);
+      break;  // we found our book - no reason to keep searching (this is why we didn't use forEach)
     }
-  });
-
+  }
   render();
 }
 
