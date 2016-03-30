@@ -1,6 +1,12 @@
 // server.js
 // SERVER-SIDE JAVASCRIPT
 
+
+/////////////////////////////
+//  SETUP and CONFIGURATION
+/////////////////////////////
+
+
 //require express in our app
 var express = require('express'),
   bodyParser = require('body-parser'),
@@ -106,6 +112,10 @@ app.delete('/api/books/:id', function (req, res) {
     res.json(deletedBook);
   });
 });
+
+
+
+
 
 app.listen(process.env.PORT || 3000, function () {
   console.log('Example app listening at http://localhost:3000/');
