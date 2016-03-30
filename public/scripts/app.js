@@ -71,7 +71,7 @@ function newBookSuccess(json) {
 }
 
 function newBookError() {
-  console.log('deletebook error!');
+  console.log('newbook error!');
 }
 
 function deleteBookSuccess(json) {
