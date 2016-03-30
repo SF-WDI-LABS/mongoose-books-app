@@ -13,11 +13,12 @@ We have authors listed as just a string inside books, but what happens if we wan
 
 1. Create a new file `models/author.js`.
 
-1. Authors will at least need a name attribute.  Create a schema for authors like you did for books.
+1. Authors will get attributes for `name`, `alive`, and `image`.  Create a schema for authors like you did for books.
 
   <details><summary>Stuck figuring out what code to include? Click here.</summary>
 
     ```js
+    // models/author.js
     var mongoose = require('mongoose');
     var Schema = mongoose.Schema;
 
@@ -34,6 +35,7 @@ We have authors listed as just a string inside books, but what happens if we wan
   <details><summary>Stuck figuring out what code to include? Click here.</summary>
 
     ```js
+    // models/author.js
     var Author = mongoose.model('Author', AuthorSchema);
     ```
 
@@ -70,7 +72,7 @@ We have authors listed as just a string inside books, but what happens if we wan
   { "Book": Book,  "Author": Author }
   ```
 
-## 3. It's alive!
+## 3. Authors, assemble!
 
 1. We have all the tools we need to start making authors.  Add the following data to your `seed.js` file. Then add a call to `db.Author.remove` to delete all the old authors, and inside it add a call to `db.Author.create` to create new authors.
 
@@ -79,28 +81,36 @@ We have authors listed as just a string inside books, but what happens if we wan
   ```js
   var authors_list = [
     {
-      name: "Harper Lee"
+      name: "Harper Lee",
+      alive: false
     },
     {
-      name: "F Scott Fitzgerald"
+      name: "F Scott Fitzgerald",
+      alive: false
     },
     {
-      name: "Victor Hugo"
+      name: "Victor Hugo",
+      alive: false
     },
     {
-      name: "Jules Verne"
+      name: "Jules Verne",
+      alive: false
     },
     {
-      name: "Sheryl Sandberg"
+      name: "Sheryl Sandberg",
+      alive: true
     },
     {
-      name: "Tim Ferriss"
+      name: "Tim Ferriss",
+      alive: true
     },
     {
-      name: "John Steinbeck"
+      name: "John Steinbeck",
+      alive: false
     },
     {
-      name: "William Shakespeare"
+      name: "William Shakespeare",
+      alive: false
     }
   ];
 
@@ -117,7 +127,6 @@ We have authors listed as just a string inside books, but what happens if we wan
         return;
       }
       console.log("created", authors.length, "authors");
-      process.exit();
     });
   });
   ```
@@ -143,38 +152,61 @@ Referencing authors is a good choice here because:
     title: String,
     author: {
       type: Schema.Types.ObjectId,
-      ref: 'Author'},
+      ref: 'Author'
+    },
     image: String,
     releaseDate: String
   });
   ```
 
-1. Now that books need an object id for `author` instead of a string, we'll have to change up how we're creating books throughout the app.  Start with `seed.js`:
+1. Now that books need an object id for `author` instead of a string, we'll have to change up how we're creating books throughout the app.  Start with `seed.js`. Replace all of the code that creates and removes authors and books with this monstrosity:
+
+  <details><summary>Click to view monstrosity</summary>
 
   ```js
-  db.Book.remove({}, function(err, books){
-    books_list.forEach(function createBookWithAuthor(bookData){
-      var book = new Book({
-        title: bookData.title,
-        image: bookData.image,
-        releaseDate: bookData.releaseDate
-      });
-      db.Author.findOne({name: bookData.name}, function saveBookWithAuthor(err, foundAuthor){
-        if (err) {
-          console.log(err);
-          return;
-        }
-        book.author = foundAuthor;
-        book.save(function(err, savedBook){
-          if (err) {
-            return console.log(err);
-          }
-          console.log('saved ' + savedBook.title + ' by ' + foundAuthor.name);
+  db.Author.remove({}, function(err, authors) {
+    console.log('removed all authors');
+    db.Author.create(authors_list, function(err, authors){
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log('recreated all authors');
+      console.log("created", authors.length, "authors");
+
+
+      db.Book.remove({}, function(err, books){
+        console.log('removed all books');
+        books_list.forEach(function (bookData) {
+          var book = new db.Book({
+            title: bookData.title,
+            image: bookData.image,
+            releaseDate: bookData.releaseDate
+          });
+          db.Author.findOne({name: bookData.author}, function (err, foundAuthor) {
+            console.log('found author ' + foundAuthor.name + ' for book ' + book.title);
+            if (err) {
+              console.log(err);
+              return;
+            }
+            book.author = foundAuthor;
+            book.save(function(err, savedBook){
+              if (err) {
+                return console.log(err);
+              }
+              console.log('saved ' + savedBook.title + ' by ' + foundAuthor.name);
+            });
+          });
         });
       });
+
     });
   });
   ```
+
+
+  ![](http://i.imgur.com/ONjGv69.png)
+  </details>
 
 1. Now on to `server.js`. Here's how to change over a few routes:
 
@@ -207,7 +239,7 @@ Referencing authors is a good choice here because:
       newBook.author = author;
       // add newBook to database
       newBook.save(function(err, book){
-        if (err) { 
+        if (err) {
           return console.log("create error: " + err);
         }
         console.log("created ", book.title);
@@ -219,9 +251,11 @@ Referencing authors is a good choice here because:
   ```
 
 
+
+
 ## Challenge!
 
-On your own, use the mongoose methods to replace the other `/api/books*` routes with mongoose commands.
+On your own, use the mongoose methods to replace the other `/api/books*` routes with mongoose commands, taking into account the new referenced data relationship. 
 
 Make sure you look back to the lecture notes for info on the most important methods like:
 * find
