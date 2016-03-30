@@ -30,6 +30,7 @@ $(document).ready(function(){
   });
 
   $booksList.on('click', '.deleteBtn', function() {
+    console.log('clicked delete button to', '/api/books/'+$(this).attr('data-id'));
     $.ajax({
       method: 'DELETE',
       url: '/api/books/'+$(this).attr('data-id'),
@@ -75,8 +76,9 @@ function newBookError() {
 
 function deleteBookSuccess(json) {
   var book = json;
+  console.log(json);
   var bookId = book._id;
-
+  console.log('delete book', bookId);
   // find the book with the correct ID and remove it from our allBooks array
   for(var index = 0; index < allBooks.length; index++) {
     if(allBooks[index]._id === bookId) {
@@ -88,5 +90,5 @@ function deleteBookSuccess(json) {
 }
 
 function deleteBookError() {
-
+  console.log('deletebook error!');
 }
