@@ -22,7 +22,7 @@ Let's replace that array with a database.  We'll create a booksSchema and Books 
 First off let's setup mongo and mongoose.  
 
 1. Install mongoose into this repo's package.json: `npm install --save mongoose`
-1. Create a new file `models/book.js`
+1. Create a new file `models/book.js`. We'll create a schema and model for books in this file!
 
 1. Our books will have the following attributes:
   * title
@@ -33,6 +33,7 @@ First off let's setup mongo and mongoose.
   Let's create a schema using these properties.  I'll get you started:
 
   ```js
+  // book.js
   var mongoose = require('mongoose');
   var Schema = mongoose.Schema;
 
@@ -44,11 +45,13 @@ First off let's setup mongo and mongoose.
 
 1. Next let's create the `Book` model from the schema.  
   ```js
+  // book.js
   var Book = mongoose.model('Book', BookSchema);
   ```
 
 1. Finally we'll need to export Book from this **module** (that's this file).  You can export it at the very end of the file by doing:
   ```js
+  // book.js
   var Book = mongoose.model('Book', BookSchema);
 
   module.exports = Book;
@@ -83,7 +86,9 @@ We've already provided a `models/index.js` for you to use.  If you take a look i
 
       // models/index.js
       var mongoose = require("mongoose");
-      mongoose.connect("mongodb://localhost/book-app");
+      mongoose.connect("mongodb://localhost/book-app");   
+      // the mongoose.connect line above  needs to happen exactly once in your code
+          // move it from book.js to index.js  :)
 
       module.exports.Gargoyle = require("./gargoyle.js");
       module.exports.Goblin = require("./goblin.js");
@@ -107,6 +112,7 @@ Take a quick look in `seed.js`.  You should see that it does a `require('./model
 
   <details><summary>Spoiler: book.js</summary>
   ```js
+  // entire book.js so far
   var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
@@ -136,6 +142,7 @@ Next we'll start to use our new model in `server.js`.
 
 1. Find the books index route and replace it with the following code:
   ```js
+  // server.js
   app.get('/api/books', function (req, res) {
     // send all books as JSON response
     db.Book.find(function(err, books){
