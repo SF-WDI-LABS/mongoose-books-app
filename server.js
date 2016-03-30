@@ -117,38 +117,6 @@ app.post('/api/books/:book_id/characters', function (req, res) {
 });
 
 
-// Create a author associated with a book
-app.post('/api/books/:book_id/author', function (req, res) {
-  // Get book id from url params (`req.params`), notice the name is changed?
-  var bookId = req.params.book_id;
-
-  // Create new comment with form data (`req.body`).
-  var character = new db.Character(req.body);
-
-  // Save new author in db.
-  character.save(function (err, savedCharacter) {
-    if (err) {
-      res.status(500).json({ error: err.message });
-    } else {
-      // Find a book by that ID and then update it to include the new character. Why would I add it as a set instead of push to it as an array?
-      // NOTE is $addToSet saving the character by reference or embedding?
-      console.log('saved char', savedCharacter);
-      db.Book.findByIdAndUpdate(bookId, {$addToSet: {character: savedCharacter}}, function(err, foundBook) {
-        console.log(foundBook);
-        if (err) {
-          res.status(500).json({error: err.message});
-        } else if (foundBook === null) {
-          // Is this the same as checking if the foundBook is undefined?
-          res.status(404).json({error: "No Book found by this ID"});
-        } else {
-          res.status(201).json(savedCharacter);
-        }
-      });
-    }
-  });
-});
-
-
 
 
 
