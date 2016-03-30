@@ -62,14 +62,15 @@ First off let's setup mongo and mongoose.
 
   <details><summary>Here's an example:</summary>
 
-    <pre>
+    ```
 
     ├── models
     │   ├── index.js
     │   ├── gargoyle.js
     │   ├── gnome.js
     │   ├── goblin.js
-    </pre>
+
+    ```
 
     Inside `index.js` we require each of the other files and export it as one object:
 
@@ -82,7 +83,7 @@ First off let's setup mongo and mongoose.
     module.exports.Goblin = require("./goblin.js");
     module.exports.Gnome = require("./gnome.js");
     ```
-    
+
  </details>
 
 ## Verifying that this is working

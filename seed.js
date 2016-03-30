@@ -55,11 +55,15 @@ var books_list = [
 ];
 
 db.Book.remove({}, function(err, books){
+  if(err) {
+    console.log('Error occurred in remove', err);
+  } else {
+    console.log('removed all books');
 
-  db.Book.create(books_list, function(err, books){
-    if (err) { return console.log(err); }
-    console.log("created", books.length, "books");
-    process.exit();
-  });
-
+    db.Book.create(books_list, function(err, books){
+      if (err) { return console.log('err', err); }
+      console.log("created", books.length, "books");
+      process.exit();
+    });
+  }
 });
