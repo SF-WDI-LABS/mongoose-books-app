@@ -81,8 +81,6 @@ app.post('/api/books', function (req, res) {
 
 });
 
-// update book
-// app.put('/api/books/:id', controllers.books.update);
 
 // delete book
 app.delete('/api/books/:id', function (req, res) {
