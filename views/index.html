@@ -44,7 +44,7 @@
             <hr>
             <p>
               <b>{{title}}</b>
-              by {{author}}
+              by {{#if author.name}}{{author.name}}{{else}}{{author}}{{/if}}
               <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id={{_id}}>Delete</button>
             </p>
             {{/each}}
