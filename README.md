@@ -13,4 +13,4 @@ We're going to take this app piece by piece over the next day or so and build it
 At first it's going to be a list of **books**.  Later we'll add in **authors** and embed **character** data in each book.
 
 
-[Sprint A - mongoose](docs/sprint-A.md)
+[Sprint 1 - mongoose](docs/sprint1.md)
