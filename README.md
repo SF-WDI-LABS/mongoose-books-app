@@ -18,4 +18,6 @@ Let's create an **author** model that gets referenced in the **book** model!
 
 [Sprint 2 - Reference & Populate](docs/sprint2.md)
 
+Let's create a **character** model that gets embedded in the **book** model!
+
 [Sprint 3 - Embedded](docs/sprint3.md)
