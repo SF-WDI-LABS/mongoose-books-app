@@ -246,16 +246,17 @@ var BookSchema = new Schema({
 
 1. Why is this? Look at the data being returned from the server and fix your `html` to show the author name!
 
-```html
+
 <details><summary>Click to view hint</summary>
+```html
 <p>
   <b>{{title}}</b>
   <!-- just this next line is what needs to be changed! -->
   by {{author.name}}
   <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id={{_id}}>Delete</button>
 </p>
-</details>
 ```
+</details>
 
 
 
