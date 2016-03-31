@@ -198,7 +198,7 @@ var BookSchema = new Schema({
   </details>
 1. Run `node seed.js` in your terminal again to re-add the books and add the new authors.
 
-## 5. Take the route less travelled.
+## 5. Reroute! 
 
 Some of our book-related routes won't work anymore since we changed the structure of our data.
 
