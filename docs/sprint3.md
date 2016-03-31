@@ -53,11 +53,11 @@ Example:
 
 | METHOD  | ROUTE   | DESCRIPTION |
 | ------- | --------------------------| ----------------|
-| GET     | /books/:bookId/characters | get all the characters for this book |
-| POST    | /books/:bookId/characters | add a new character to the book      |
-| GET     | /books/:bookId/characters/:id | get a specific character from this book |
-| PUT     | /books/:bookId/characters/:id | update a  character from this book |
-| DELETE  | /books/:bookId/characters/:id | delete a character from this book |
+| GET     | /api/books/:bookId/characters | get all the characters for this book |
+| POST    | /api/books/:bookId/characters | add a new character to the book      |
+| GET     | /api/books/:bookId/characters/:id | get a specific character from this book |
+| PUT     | /api/books/:bookId/characters/:id | update a  character from this book |
+| DELETE  | /api/books/:bookId/characters/:id | delete a character from this book |
 
 
 We don't need all of these today; in fact we're only really going to worry about adding characters for now.
