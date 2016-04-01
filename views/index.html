@@ -49,7 +49,7 @@
               <br>
               <b>Characters:</b>
               {{#each characters}}
-                {{name}}
+                {{name}} <button class="deleteCharacter btn btn-danger" data-bookid={{../_id}} data-charid={{_id}}><b>x</b></button>
               {{/each}}
               <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id={{_id}}>Delete</button>
             </p>
