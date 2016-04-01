@@ -47,7 +47,7 @@ app.get('/api/books', function (req, res) {
 
 // get one book
 app.get('/api/books/:id', function (req, res) {
-  db.Books.findOne({_id: req.params._id }, function(err, data) {
+  db.Book.findOne({_id: req.params.id }, function(err, data) {
     res.json(data);
   });
 });
