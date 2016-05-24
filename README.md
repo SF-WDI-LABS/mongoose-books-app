@@ -1,16 +1,20 @@
 # <img src="https://cloud.githubusercontent.com/assets/7833470/10423298/ea833a68-7079-11e5-84f8-0a925ab96893.png" width="60"> Full Stack JavaScript
 
-## Pre-requisites
+## Prerequisites
 
-* express
-* intro to mongoose
-* jQuery and AJAX
+* Express
+* Mongo
+* Mongoose
+* jQuery
+* AJAX (xhr requests)
 
-## Base Challenges - Build an App using mongoDB and mongoose
+## Exercise
 
-We're going to take this app piece by piece over the next day or so and build it up.
+Let's build a full stack javascript app incrementally...
 
-At first it's going to be a list of **books**.  Later we'll add in **authors** and embed **character** data in each book.
+* At first it's going to be a list of **books**
+* Then we'll add in **authors**
+* Finally we'll embed **character** data in each book
 
 [Sprint 1 - Mongoose](docs/sprint1.md)
 
