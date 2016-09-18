@@ -10,8 +10,8 @@
 
 ## 2. OK server.js, let's see what you've got?!
 
-1. Open up `server.js` and take a look at the hard-coded books data.  You should see a list of book objects in there.
-1. You should also already see that there are routes to create (POST) new books, get a list of books (GET index), get a single book (GET show) and edit and delete books.  -- Plus they're all using that array.  
+1. Open up `server.js` and take a look at the hard-coded books data.  You should see an array of book objects in there called `books`.
+1. You should also already see that there are routes to create (POST) new books, get a list of books (GET index), get a single book (GET show) and edit (PUT) and delete (DELETE) books.  -- Notice they're all manipulating the `books` array.  
 
 ## 3. Outgrowing Arrays as a datastore.
 
@@ -57,22 +57,22 @@ First off let's setup mongo and mongoose.
   module.exports = Book;
   ```
 
-## 4. Wait a second.... what are modules :grey_question:
+## 4. Wait a second.... what are modules ?
 
 We've already provided a `models/index.js` for you to use.  If you take a look in there you should already see that it
   1. requires mongoose
   1. connects to a book-app database
 
-`index.js` will import each model and export an object called `exports` with keys representing each of our models.  That way we can `require` the entire directory and get all of our models!  
+  `index.js` will import each model and export an object called `exports` with keys representing each of our models.  That way we can `require` the entire directory and get all of our models!  
 
-1. Go ahead and import and export your `Book` model in `index.js`.
+  1. Go ahead and import and export your `Book` model in `index.js`.
   ```js
   // models/index.js
   module.exports.Book = require("./book.js");
   ```
   Now if someone were to `require('./models')` they'd gain access to this database model.
 
-    <details><summary>Here's a module example:</summary>
+  Here's a module example:
 
 
       ├── models
@@ -82,22 +82,23 @@ We've already provided a `models/index.js` for you to use.  If you take a look i
       │   ├── goblin.js
 
 
-      Inside `index.js` we require each of the other files and export it as one object:
+  Inside `index.js` we require each of the other files and export it as one object:
 
-      // models/index.js
-      var mongoose = require("mongoose");
-      mongoose.connect("mongodb://localhost/book-app");   
-      // the mongoose.connect line above  needs to happen exactly once in your code
-          // move it from book.js to index.js  :)
+  ```javascript
+  // models/index.js
+  var mongoose = require("mongoose");
+  mongoose.connect("mongodb://localhost/book-app");   
+  // the mongoose.connect line above  needs to happen exactly once in your code
+      // move it from book.js to index.js  :)
 
-      module.exports.Gargoyle = require("./gargoyle.js");
-      module.exports.Goblin = require("./goblin.js");
-      module.exports.Gnome = require("./gnome.js");
+  module.exports.Gargoyle = require("./gargoyle.js");
+  module.exports.Goblin = require("./goblin.js");
+  module.exports.Gnome = require("./gnome.js");
+  ```
 
-      In the end this means that when you require `./models` in `server.js` you get back an object like
-        { Gargoyle: Model, Goblin: Model, Gnome: Model }
+  In the end this means that when you require `./models` in `server.js` you get back an object like
+        `{ Gargoyle: Model, Goblin: Model, Gnome: Model }`
 
-    </details>
 
 
 ## 5. Verifying that this is working
@@ -105,7 +106,7 @@ We've already provided a `models/index.js` for you to use.  If you take a look i
 Take a quick look in `seed.js`.  You should see that it does a `require('./models');` and then later uses `db.Book.create` to load some data into the database.  (The insightful student will also note that it tries to clear the `book-app` database first by deleting all the records.)
 
 **What's a seed-file you ask?**
-> A seed file is a file used to load pre-made data into our database.  It let's us start-up our app without having to key in data each time.
+> A seed file is a file used to load pre-made data into our database.  It let's us start-up our app without having to key in starter data each time.
 
 1. Try running `node seed.js` in your terminal.
   If you're not seeing `created X books` then something might be going wrong.  
