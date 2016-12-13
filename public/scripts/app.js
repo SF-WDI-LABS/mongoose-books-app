@@ -47,11 +47,21 @@ function render () {
   // empty existing posts from view
   $booksList.empty();
 
-  // pass `allBooks` into the template function
-  var booksHtml = template({ books: allBooks });
+  var bookHtml;
 
+  // for each book:
+  allBooks.forEach(function(bookData){
+    get the hmtl
+    bookHtml = template({book: bookData});
+    $booksList.append(bookHtml);
+  });
+
+
+  // alternately, if using {{#each}} in template:
+  // pass `allBooks` into the template function
+  // var booksHtml = template({ books: allBooks });
   // append html to the view
-  $booksList.append(booksHtml);
+  // $booksList.append(booksHtml);
 };
 
 function handleSuccess(json) {
