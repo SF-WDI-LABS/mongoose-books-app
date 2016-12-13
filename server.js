@@ -130,5 +130,5 @@ app.delete('/api/books/:id', function (req, res) {
 
 
 app.listen(process.env.PORT || 3000, function () {
-  console.log('Example app listening at http://localhost:3000/');
+  console.log('Book app listening at http://localhost:3000/');
 });
