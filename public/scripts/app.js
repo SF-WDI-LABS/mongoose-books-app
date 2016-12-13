@@ -51,8 +51,9 @@ function render () {
 
   // for each book:
   allBooks.forEach(function(bookData){
-    get the hmtl
+    // get the hmtl
     bookHtml = template({book: bookData});
+    // add the html to the page
     $booksList.append(bookHtml);
   });
 
