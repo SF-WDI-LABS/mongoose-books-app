@@ -50,6 +50,9 @@ var books = [
 ];
 
 
+var newBookUUID = 18;
+
+
 
 
 
@@ -91,6 +94,7 @@ app.post('/api/books', function (req, res) {
   // create new book with form data (`req.body`)
   console.log('books create', req.body);
   var newBook = req.body;
+  newBook._id = newBookUUID++;
   books.push(newBook);
   res.json(newBook);
 });
