@@ -2,7 +2,6 @@ console.log("Sanity Check: JS is working!");
 var $booksList;
 var allBooks = [];
 
-
 $(document).ready(function(){
 
   $booksList = $('#bookTarget');
