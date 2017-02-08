@@ -1,16 +1,11 @@
 console.log("Sanity Check: JS is working!");
-var template;
 var $booksList;
 var allBooks = [];
+
 
 $(document).ready(function(){
 
   $booksList = $('#bookTarget');
-
-  // compile handlebars template
-  var source = $('#books-template').html();
-  template = Handlebars.compile(source);
-
   $.ajax({
     method: 'GET',
     url: '/api/books',
@@ -41,6 +36,19 @@ $(document).ready(function(){
 
 });
 
+function getBookHtml(book) {
+  return `<hr>
+          <p>
+            <b>${book.title}</b>
+            by ${book.author}
+            <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${book._id}>Delete</button>
+          </p>`;
+}
+
+function getAllBooksHtml(books) {
+  return books.map(book => getBookHtml(book)).join("");
+}
+
 // helper function to render all posts to view
 // note: we empty and re-render the collection each time our post data changes
 function render () {
@@ -48,7 +56,7 @@ function render () {
   $booksList.empty();
 
   // pass `allBooks` into the template function
-  var booksHtml = template({ books: allBooks });
+  var booksHtml = getAllBooksHtml(allBooks);
 
   // append html to the view
   $booksList.append(booksHtml);
