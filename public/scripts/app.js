@@ -45,7 +45,7 @@ function getBookHtml(book) {
 }
 
 function getAllBooksHtml(books) {
-  return books.map(book => getBookHtml(book)).join("");
+  return books.map(getBookHtml).join("");
 }
 
 // helper function to render all posts to view
