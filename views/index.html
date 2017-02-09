@@ -34,17 +34,6 @@
           <button type="submit" class="btn btn-default">Create book</button>
         </form>
         <div id='bookTarget'>
-          <!-- handlebars template -->
-          <script id="books-template" type="text/x-handlebars-template">
-            {{#each books}}
-            <hr>
-            <p>
-              <b>{{title}}</b>
-              by {{author.name}}
-              <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id={{_id}}>Delete</button>
-            </p>
-            {{/each}}
-          </script>
         </div>
       </div>
     </div>
