@@ -1,15 +1,10 @@
 console.log("Sanity Check: JS is working!");
-var template;
 var $booksList;
 var allBooks = [];
 
 $(document).ready(function(){
 
   $booksList = $('#bookTarget');
-
-  // compile handlebars template
-  var source = $('#books-template').html();
-  template = Handlebars.compile(source);
 
   $.ajax({
     method: 'GET',
@@ -62,6 +57,39 @@ $(document).ready(function(){
 
 });
 
+function getCharacterHtml(_book_id, character) {
+  return `${character.name} <button class="deleteCharacter btn btn-danger" data-bookid=${_book_id} data-charid=${character._id}><b>x</b></button>`;
+}
+
+function getAllCharactersHtml(_book_id, characters) {
+  return characters.map(function(character) {
+              return getCharacterHtml(_book_id, character);
+            }).join("");
+}
+
+function getBookHtml(book) {
+  return `<hr>
+          <p>
+            <b>${book.title}</b>
+            by ${(book.author) ? book.author.name : 'null'}
+            <br>
+            <b>Characters:</b>
+            ${getAllCharactersHtml(book.id, book.characters)}
+            <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${book._id}>Delete</button>
+          </p>
+          <form class="form-inline" id="addCharacterForm" data-id=${book._id}>
+            <div class="form-group">
+              <input type="text" class="form-control" name="name" placeholder="Book character">
+            </div>
+            <button type="submit" class="btn btn-default">Add character</button>
+          </form>
+          `;
+}
+
+function getAllBooksHtml(books) {
+  return books.map(getBookHtml).join("");
+}
+
 // helper function to render all posts to view
 // note: we empty and re-render the collection each time our post data changes
 function render () {
@@ -69,7 +97,7 @@ function render () {
   $booksList.empty();
 
   // pass `allBooks` into the template function
-  var booksHtml = template({ books: allBooks });
+  var booksHtml = getAllBooksHtml(allBooks);
 
   // append html to the view
   $booksList.append(booksHtml);

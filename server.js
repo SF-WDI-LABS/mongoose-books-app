@@ -65,21 +65,30 @@ app.post('/api/books', function (req, res) {
     if (err) {
       return console.log(err);
     }
-    // add this author to the book
-    newBook.author = author;
-
-
-    // save newBook to database
-    newBook.save(function(err, book){
-      if (err) {
-        return console.log("save error: " + err);
-      }
-      console.log("saved ", book.title);
-      // send back the book!
-      res.json(book);
-    });
+    // if that author doesn't exist yet, create a new one
+    if (author === null) {
+      db.Author.create({name:req.body.author, alive:true}, function(err, newAuthor) {
+        createBookWithAuthorAndRespondTo(newBook, newAuthor, res);
+      });
+    } else {
+      createBookWithAuthorAndRespondTo(newBook, author, res);
+    }
   });
 });
+
+function createBookWithAuthorAndRespondTo(book, author, res) {
+  // add this author to the book
+  book.author = author;
+  // save newBook to database
+  book.save(function(err, book){
+    if (err) {
+      return console.log("save error: " + err);
+    }
+    console.log("saved ", book.title);
+    // send back the book!
+    res.json(book);
+  });
+}
 
 // delete book
 app.delete('/api/books/:id', function (req, res) {
@@ -90,7 +99,7 @@ app.delete('/api/books/:id', function (req, res) {
   db.Book.findOneAndRemove({ _id: bookId })
     .populate('author')
     .exec(function (err, deletedBook) {
-    res.json(deletedBook);
+      res.json(deletedBook);
   });
 });
 
