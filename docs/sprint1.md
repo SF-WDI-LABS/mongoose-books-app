@@ -130,7 +130,7 @@ Take a quick look in `seed.js`.  You should see that it does a `require('./model
   ```
   </details>
 
-1. You can use robomongo to check out your database.  If you got an error message try to debug, and if you're stuck ask for help.  
+1. You can use a Node REPL or your server file to check what's now in your database.  If you got an error message try to debug, and if you're stuck ask for help.
 
 
 ## 6. Connecting the database to the server

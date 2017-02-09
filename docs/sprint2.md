@@ -1,22 +1,14 @@
 # Sprint 2 - relationships & referenced data
 
-_HINT_: open Robomongo and refresh it regularly to check on your database items.
-
 ## 1. You enter a vast building full of books.
 
-1. To start this sprint, checkout the correct branch (you need to have all the changes in your current branch checked in to checkout a new branch):
-  ```
-  git checkout starting-point-sprint-2
-  ```
-
-1. At this point, you should have a node app set up to serve data about books and even allow users to add books, change them, and delete them. Look through any code in `server.js` and in the `models` directory that's new to you.
+1. **If you have successfully completed all of sprint 1, you should continue working based on your current code.** If not, please checkout the solution branch using `git checkout solution-sprint-1` so that you can start working on this second sprint. (You need to have all the changes in your current branch checked in to checkout a new branch.) At this point, you should have a node app set up to serve data about books and even allow users to add books, change them, and delete them. Look through any code in `server.js` and in the `models` directory that's new to you.
 
 1. Startup the server and open up your browser.  Take a look at the updated front-end.
 
 ## 2. More than just a piece of text!
 
 We have authors listed as just a string inside books, but what happens if we want to store more than just an author's name?  Let's create a separate model for authors.  
-
 
 1. Create a new file `models/author.js`.
 
@@ -246,16 +238,15 @@ Some of our book-related routes won't work anymore since we changed the structur
 1. When you look at your view, instead of seeing the nicely listed author, you should see the author object.
 ![author object](https://cloud.githubusercontent.com/assets/3010270/14153137/6c0b4432-f66b-11e5-9440-b122c471e746.png)
 
-1. Why is this? Look at the data being returned from the server and fix your `html` to show the author name!
-
+1. Why is this? Look at the data being returned from the server and fix the template string to show the author name!
 
 <details><summary>Click to view hint</summary>
 ```html
 <p>
-  <b>{{title}}</b>
+  <b>${title}</b>
   <!-- just this next line is what needs to be changed! -->
-  by {{author.name}}
-  <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id={{_id}}>Delete</button>
+  by ${author.name}
+  <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${_id}>Delete</button>
 </p>
 ```
 </details>
