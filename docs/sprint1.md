@@ -15,7 +15,7 @@
 
 ## 3. Outgrowing Arrays as a datastore.
 
-Array's are no longer adequate as a data-store.  They lose their data whenever the server is shut-down, they don't support backups unless you copy the file and new elements never get saved in the file.  Plus all the cool kids are using databases not arrays.
+Arrays are no longer adequate as a data-store.  They lose their data whenever the server is shut down, they don't support backups unless you copy the file, and new elements never get saved in the file.  Plus, all the cool kids are using databases.
 
 Let's replace that array with a database.  We'll create a booksSchema and Books model.  
 
@@ -57,7 +57,7 @@ First off let's setup mongo and mongoose.
   module.exports = Book;
   ```
 
-## 4. Wait a second.... what are modules ?
+## 4. Review: what are modules ?
 
 We've already provided a `models/index.js` for you to use.  If you take a look in there you should already see that it
   1. requires mongoose
@@ -103,13 +103,13 @@ We've already provided a `models/index.js` for you to use.  If you take a look i
 
 ## 5. Verifying that this is working
 
-Take a quick look in `seed.js`.  You should see that it does a `require('./models');` and then later uses `db.Book.create` to load some data into the database.  (The insightful student will also note that it tries to clear the `book-app` database first by deleting all the records.)
+Take a quick look in `seed.js`.  You should see that it does a `require('./models');` and then later uses `db.Book.create` to load some data into the database.  (You might also notice that it tries to clear the `book-app` database first by deleting all the records.)
 
-**What's a seed-file you ask?**
-> A seed file is a file used to load pre-made data into our database.  It let's us start-up our app without having to key in starter data each time.
+**What's a seed-file, you ask?**
+> A seed file is a file used to load pre-made data into our database.  It lets us start up our app without having to key in starter data each time.
 
 1. Try running `node seed.js` in your terminal.
-  If you're not seeing `created X books` then something might be going wrong.  
+  If you're not seeing `created X books` then something might be going wrong in your book.js file.  
 
   <details><summary>Spoiler: book.js</summary>
   ```js
@@ -130,7 +130,7 @@ Take a quick look in `seed.js`.  You should see that it does a `require('./model
   ```
   </details>
 
-1. You can use a Node REPL or your server file to check what's now in your database.  If you got an error message try to debug, and if you're stuck ask for help.
+1. You can use the Mongo REPL to check what's now in your database, or start interacting with it from the server.  If you got an error message, FIX IT BEFORE YOU MOVE ON; try to debug, and if you're stuck, ask for help. (Remember the question chain!)
 
 
 ## 6. Connecting the database to the server
@@ -160,7 +160,7 @@ Next we'll start to use our new model in `server.js`.
 
 On your own use the mongoose methods to replace the other `/api/books*` routes with mongoose commands.
 
-Make sure you look back to the lecture notes for info on the most important methods like:
+Make sure you look back to the lecture notes or the Mongoose documentation for info on important methods like:
 * find
 * findOneAndRemove
 * new
