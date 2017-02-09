@@ -12,7 +12,7 @@ We have authors listed as just a string inside books, but what happens if we wan
 
 1. Create a new file `models/author.js`.
 
-1. Authors will get attributes for `name`, `alive`, and `image`.  Create a schema for authors like you did for books.
+1. Authors will get attributes for `name`, `alive`, and `image`.  Create a schema for authors with those three attributes.
 
   <details><summary>Stuck figuring out what code to include? Click here.</summary>
 
@@ -78,7 +78,7 @@ Now we have a books model and authors has its own model. We want to relate them!
 
 Referencing authors is a good choice here because:
 * many books might share the same author, and   
-* we don't want to have to access every single one of an author's books just to make a change to the author's data.  
+* we don't want to have to access every single one of an author's books just to make a change to the author's data. 
 
 
 1. We'll need to update the book schema. Change the `author` line to store a reference to the author:
@@ -194,9 +194,10 @@ var BookSchema = new Schema({
 
 Some of our book-related routes won't work anymore since we changed the structure of our data.
 
-1. Now on to `server.js`. Here's how to change over a few routes:
+1. Now on to `server.js`. Try to change over your routes to use the new structure of books and authors. If you get stuck, here's how to change over a few routes:
 
-  ```js
+<details><summary>Spoilers on new route structure:</summary>
+```js
   // get all books
   app.get('/api/books', function (req, res) {
     // send all books as JSON response
@@ -232,7 +233,8 @@ Some of our book-related routes won't work anymore since we changed the structur
     });
 
   });
-  ```
+```
+</details>
 
 ## 6. But the view from here is bad!
 1. When you look at your view, instead of seeing the nicely listed author, you should see the author object.
@@ -243,10 +245,10 @@ Some of our book-related routes won't work anymore since we changed the structur
 <details><summary>Click to view hint</summary>
 ```html
 <p>
-  <b>${title}</b>
+  <b>${book.title}</b>
   <!-- just this next line is what needs to be changed! -->
-  by ${author.name}
-  <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${_id}>Delete</button>
+  by ${book.author.name}
+  <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${book._id}>Delete</button>
 </p>
 ```
 </details>
