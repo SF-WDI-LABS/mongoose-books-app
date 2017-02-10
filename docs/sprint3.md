@@ -2,9 +2,10 @@
 
 ## 1. Many unique characters belong to each book!
 
-That's right we're going to add Characters to each of the books.
-Characters however are usually pretty unique to the book that they're in, so we'll be using an **embedded** document; embedding `Character` into the `Book` schema.  
+That's right: we're going to add Characters to each of the books.
+Characters, however, are usually pretty unique to the book that they're in, so we'll be using an **embedded** document; embedding `Character` into the `Book` schema.  
 
+1. Switch to a new directory (so that you don't overwrite your old work) and checkout the `solution-sprint-2` branch. It has been an updated frontend with characters.
 1. Startup the app making sure to `node seed.js` and `node server.js`.  
 1. Take a look at the current UI in your web browser.  You should see that a new field has been added to each book listed.
 1. Open your web browser developer tools.  Try to add a character to one of the books.  You should see an error message like: `jquery.min.js:4 POST http://localhost:3000/api/books/56fc1e8a8d4bcdb3e5e0092e/characters 404 (Not Found)`
