@@ -243,16 +243,17 @@ Some of our book-related routes won't work anymore since we changed the structur
 
 1. Why is this? Look at the data being returned from the server and, if needed, fix your template string to show the author name!
 
-Here's a hint:
+<details><summary>click for a hint</summary>
 
 ```
-<p>html
+<p>
   <b>${book.title}</b>
   <!-- this next line is what needs to be changed! -->
   by ${book.author.name}
   <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${book._id}>Delete</button>
 </p>
 ```
+</details>
 
 
 
