@@ -201,7 +201,7 @@ Some of our book-related routes won't work anymore since we changed the structur
     // get all books
     app.get('/api/books', function (req, res) {
       // send all books as JSON response
-      db.Boogey.find()
+      db.Book.find()
         // populate fills in the author id with all the author data
         .populate('author')
         .exec(function(err, books){
@@ -227,8 +227,8 @@ Some of our book-related routes won't work anymore since we changed the structur
           if (err) {
             return console.log("create error: " + err);
           }
-          console.log("created ", boot.title);
-          res.json(boot);
+          console.log("created ", book.title);
+          res.json(book);
         });
       });
 
