@@ -1,5 +1,11 @@
 # Sprint 1 - mongoDB & mongoose
 
+## 0. Set up your app
+
+1. Fork and clone this repository.
+
+2. Make a branch for your work using the command `git checkout -b my-work-sprint-1`. This branch will house the work that you have done on sprint 1.
+
 ## 1. You awake inside a new app and look around.
 
 1. Take a few minutes to familiarize yourself with your surroundings and navigate the file structure of this app.  You should see a few routes listed in `server.js`; a basic front-end using them, a few files in public including your front-end JavaScript.  
@@ -112,7 +118,7 @@ In the end this means that when you require `./models` in `server.js` you get ba
 2. Try running `node seed.js` in your terminal. If you're not seeing `created X books`, then something might be going wrong in your `book.js` file.  
 
   Here's an example of what your `book.js` could look like:
-  
+
   ```js
   // entire book.js so far
   var mongoose = require('mongoose');
@@ -149,8 +155,8 @@ Next we'll start to use our new model in `server.js`.
   app.get('/api/books', function (req, res) {
     // send all books as JSON response
     db.Book.find(function(err, books){
-      if (err) { 
-        console.log("index error: " + err); 
+      if (err) {
+        console.log("index error: " + err);
         res.sendStatus(500);
       }
       res.json(books);
@@ -158,7 +164,7 @@ Next we'll start to use our new model in `server.js`.
   });
   ```
 
-5. Restart your server. Debug any error messages you see. 
+5. Restart your server. Debug any error messages you see.
 
 6. If you've successfully seeded your database and debugged your code, you should see all the books from `seed.js` when you refresh the page.
 

@@ -5,10 +5,11 @@
 That's right: we're going to add Characters to each of the books.
 Characters, however, are usually pretty unique to the book that they're in, so we'll be using an **embedded** document; embedding `Character` into the `Book` schema.  
 
-1. Switch to a new directory (so that you don't overwrite your old work) and checkout the `solution-sprint-2` branch. It has been an updated frontend with characters.
-2. Startup the app making sure to `node seed.js` and `node server.js`.  
-3. Take a look at the current UI in your web browser.  You should see that a new field has been added to each book listed.
-4. Open your web browser developer tools.  Try to add a character to one of the books.  You should see an error message like: `jquery.min.js:4 POST http://localhost:3000/api/books/56fc1e8a8d4bcdb3e5e0092e/characters 404 (Not Found)`
+1. Commit your work (so that you don't overwrite your old work) and checkout the `solution-sprint-2` branch. Inspect the solutions, especially the `POST api/books` route to see how to handle the case when an author is not yet saved in the database. If your `my-work-sprint-2` branch had the exact same functionality as the solutions, feel free to `checkout my-work-sprint-2` before completing the next step.
+2. From here, `git checkout -b my-work-sprint-3.`
+3. Startup the app making sure to `node seed.js` and `node server.js`.  
+4. Take a look at the current UI in your web browser.  You should see that a new field has been added to each book listed.
+5. Open your web browser developer tools.  Try to add a character to one of the books.  You should see an error message like: `jquery.min.js:4 POST http://localhost:3000/api/books/56fc1e8a8d4bcdb3e5e0092e/characters 404 (Not Found)`
   * What type of error is 404?
 
 
@@ -39,7 +40,7 @@ Since Characters will be embedded we can create it's schema either in its own fi
 
     characters: [CharacterSchema]  // for multiple embedded items in an array
     mainCharacter: CharacterSchema // if you want one embedded item
-  
+
   </details>
 
 

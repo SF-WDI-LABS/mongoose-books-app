@@ -2,9 +2,11 @@
 
 ## 1. You enter a vast building full of books.
 
-1. **If you have successfully completed all of sprint 1, you should continue working based on your current code.** If not, please checkout the solution branch using `git checkout solution-sprint-1` so that you can start working on this second sprint. (You need to have all the changes in your current branch checked in to checkout a new branch.) At this point, you should have a node app set up to serve data about books and even allow users to add books, change them, and delete them. Look through any code in `server.js` and in the `models` directory that's new to you.
+1. **If you have successfully completed all of sprint 1, you may skip to the next instruction.** If not, please checkout the solution branch using `git checkout solution-sprint-1` so that you can start working on this second sprint. (You need to have all the changes in your current branch committed to checkout a new branch.) At this point, you should have a node app set up to serve data about books and even allow users to add books, change them, and delete them. Look through any code in `server.js` and in the `models` directory that's new to you.
 
-1. Startup the server and open up your browser.  Take a look at the updated front-end.
+1. In order to work on a branch with a new more appropriate name, use the command `git checkout -b my-work-sprint-2`. This will create a new branch starting from the commit that you were previously on.
+
+1. Startup the server, open up your browser, and move forward with the instructions.
 
 ## 2. More than just a piece of text!
 
@@ -25,7 +27,7 @@ We have authors listed as just a string inside books, but what happens if we wan
       // you should fill the rest of this in
     });
 
-    
+
   </details>
 <br>
 
@@ -77,7 +79,7 @@ Now we have a books model and authors has its own model. We want to relate them!
 
 Referencing authors is a good choice here because:
 * many books might share the same author, and   
-* we don't want to have to access every single one of an author's books just to make a change to the author's data. 
+* we don't want to have to access every single one of an author's books just to make a change to the author's data.
 
 
 1. We'll need to update the book schema. Change the `author` line to store a reference to the author:
@@ -190,7 +192,7 @@ var BookSchema = new Schema({
 
 3. Run `node seed.js` in your terminal again to re-add the books and add the new authors.
 
-## 5. Reroute! 
+## 5. Reroute!
 
 Some of our book-related routes won't work anymore since we changed the structure of our data.
 
