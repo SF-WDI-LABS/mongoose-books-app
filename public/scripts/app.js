@@ -51,7 +51,10 @@ $(document).ready(function(){
     $.ajax({
       method: 'DELETE',
       url: '/api/books/'+$(this).data('bookid')+'/characters/'+$(this).data('charid'),
-      success: deleteCharacterSuccess
+      success: deleteCharacterSuccess,
+      error: function(xhr, status, err){
+        console.log(err);
+      }
     });
   });
 
@@ -74,7 +77,7 @@ function getBookHtml(book) {
             by ${(book.author) ? book.author.name : 'null'}
             <br>
             <b>Characters:</b>
-            ${getAllCharactersHtml(book.id, book.characters)}
+            ${getAllCharactersHtml(book._id, book.characters)}
             <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${book._id}>Delete</button>
           </p>
           <form class="form-inline" id="addCharacterForm" data-id=${book._id}>
