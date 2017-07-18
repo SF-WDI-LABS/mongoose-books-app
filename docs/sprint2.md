@@ -261,7 +261,7 @@ Some of our book-related routes won't work anymore since we changed the structur
 
 ## Challenge!
 
-On your own, use the mongoose methods to replace the other `/api/books*` routes with mongoose commands, taking into account the new referenced data relationship.
+On your own, use the mongoose methods to replace the other `/api/books*` routes with mongoose commands, taking into account the new referenced data relationship. Most importantly, update the `POST /api/books` route so that it checks if the author already exists (`.find()` an author) before creating a new book. If the author exists, go ahead and create the book. If the author doesn't yet exist, you'll need to create the author document before creating the book that references it.
 
 Make sure you look back to the lecture notes for info on the most important methods like:
 * `find`
