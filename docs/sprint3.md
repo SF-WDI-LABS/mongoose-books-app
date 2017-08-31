@@ -5,7 +5,7 @@
 That's right: we're going to add Characters to each of the books.
 Characters, however, are usually pretty unique to the book that they're in, so we'll be using an **embedded** document; embedding `Character` into the `Book` schema.  
 
-1. Commit your work (so that you don't overwrite your old work) and checkout the `starting-point-sprint-3` branch. Inspect the solutions, especially the `POST api/books` route to see how to handle the case when an author is not yet saved in the database. If your `my-work-sprint-2` branch had the exact same functionality as the solutions, feel free to `checkout my-work-sprint-2` before completing the next step.
+1. Commit your work (so that you don't overwrite your old work) and checkout the `starting-point-sprint-3` branch. Inspect the solutions, especially the `POST api/books` route to see how to handle the case when an author is not yet saved in the database.
 2. From here, `git checkout -b my-work-sprint-3.`
 3. Startup the app making sure to `node seed.js` and `node server.js`.  
 4. Take a look at the current UI in your web browser.  You should see that a new field has been added to each book listed.
