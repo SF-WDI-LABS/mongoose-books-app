@@ -70,7 +70,7 @@ function getBookHtml(book) {
             by ${(book.author) ? book.author.name : 'null'}
             <br>
             <b>Characters:</b>
-            ${getAllCharactersHtml(book.id, book.characters)}
+            ${getAllCharactersHtml(book._id, book.characters)}
             <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${book._id}>Delete</button>
           </p>
           <form class="form-inline" id="addCharacterForm" data-id=${book._id}>
