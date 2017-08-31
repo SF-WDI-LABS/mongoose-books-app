@@ -109,7 +109,7 @@ We don't need all of these today; in fact we're only really going to worry about
          .populate('author') // Reference to author
          // now we can worry about saving that character
          .exec(function(err, foundBook) {
-           console.log(foundBoolean);
+           console.log(foundBook);
            if (err) {
              res.status(500).json({error: err.message});
            } else if (foundBook === null) {
