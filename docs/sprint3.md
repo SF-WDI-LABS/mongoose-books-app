@@ -27,13 +27,7 @@ Since Characters will be embedded we can create it's schema either in its own fi
   });
   ```
 
-2. Now take a look at the `BookSchema` find the part where it has the array of characters.  Let's replace that string with our new schema.
-
-  ```js
-  //models/book.js
-  // change this
-  characters: [String]
-  ```
+2. Now take a look at the `BookSchema`. Our current schema doesn't have any way of storing Character data.  Let's include characters using that Character Schema.
 
   Do you remember how to access an embedded Schema?  
 
