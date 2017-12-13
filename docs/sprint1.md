@@ -169,7 +169,7 @@ Next we'll start to use our new model in `server.js`.
 6. If you've successfully seeded your database and debugged your code, you should see all the books from `seed.js` when you refresh the page.
 
 
-## 7. Challenge!
+## 7. Add Remaining CRUD Methods
 
 On your own, use mongoose CRUD methods to refactor the other `/api/books*` routes to get data from your database.
 
