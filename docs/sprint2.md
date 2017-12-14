@@ -188,7 +188,7 @@ Some of our book-related routes won't work anymore since we changed the structur
           // populate fills in the author id with all the author data
           .populate('author')
           .exec(function(err, books){
-            if (err) { return console.log("index error: " + err); }
+            if (err) { console.log("index error: " + err); }
             res.json(books);
           });
       });
@@ -208,7 +208,7 @@ Some of our book-related routes won't work anymore since we changed the structur
           // add newBook to database
           newBook.save(function(err, book){
             if (err) {
-              return console.log("create error: " + err);
+              console.log("create error: " + err);
             }
             console.log("created ", book.title);
             res.json(book);
