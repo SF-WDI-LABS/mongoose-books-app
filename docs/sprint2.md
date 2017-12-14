@@ -159,7 +159,7 @@ Referencing authors is a good choice here because:
                 book.author = foundAuthor;
                 book.save(function(err, savedBook){
                   if (err) {
-                    return console.log(err);
+                    console.log(err);
                   }
                   console.log('saved ' + savedBook.title + ' by ' + foundAuthor.name);
                 });
