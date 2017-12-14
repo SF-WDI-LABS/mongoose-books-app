@@ -235,7 +235,7 @@ Some of our book-related routes won't work anymore since we changed the structur
 
 
 
-## Challenge!
+## Revise Other CRUD methods to Account for Authors
 
 On your own, use the mongoose methods to replace the other `/api/books*` routes with mongoose commands, taking into account the new referenced data relationship.
 
