@@ -35,6 +35,25 @@ $(document).ready(function(){
     });
   });
 
+  $booksList.on('click', '.book-edit-button', function() {
+    console.log('clicked edit button to', '/api/books/'+$(this).attr('data-id'));
+    $('.book-edit-modal-input').val($(this).parent().find("span").text());
+    $('.book-edit-modal-save').attr('data-id', $(this).attr("data-book-id"))
+  });
+
+  $('.book-edit-modal-save').on('click', function() {
+    $.ajax({
+      method: "PUT",
+      url: `/api/books/${$(this).attr('data-id')}`,
+      data: {title: $('.book-edit-modal-input').val() },
+      success: function(updatedBook) {
+        allBooks = allBooks.map(x => x._id == updatedBook._id ? updatedBook : x);
+        render();
+      }
+    }
+    )
+  })
+
   $booksList.on('submit', '#addCharacterForm', function(e) {
     e.preventDefault();
     console.log('new characters');
@@ -73,8 +92,9 @@ function getAllCharactersHtml(_book_id, characters) {
 function getBookHtml(book) {
   return `<hr>
           <p>
-            <b>${book.title}</b>
+            <span>${book.title}</span>
             by ${(book.author) ? book.author.name : 'null'}
+            <button class="book-edit-button" data-toggle="modal" data-target="#exampleModal" data-book-id="${book._id}">Edit</button>
             <br>
             <b>Characters:</b>
             ${getAllCharactersHtml(book._id, book.characters)}
