@@ -103,6 +103,19 @@ app.delete('/api/books/:id', function (req, res) {
   });
 });
 
+app.put('/api/books/:id', function (req, res) {
+  // get book id from url params (`req.params`)
+  console.log('books edit', req.params);
+  console.log('body is', req.body);
+  var bookId = req.params.id;
+  // find the index of the book we want to remove
+  db.Book.findOneAndUpdate({ _id: bookId }, req.body, {new: true})
+    .populate('author')
+    .exec(function (err, updatedBook) {
+      res.json(updatedBook);
+  });
+});
+
 
 // Create a character associated with a book
 app.post('/api/books/:book_id/characters', function (req, res) {

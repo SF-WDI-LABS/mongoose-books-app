@@ -44,7 +44,15 @@ $(document).ready(function(){
   $booksList.on('click', '.edit-book-submit-button', function() {
     $(this).parent().hide();
     let newTitle = $(this).parent().find("input").val();
-    $(this).parent().parent().find(".book-title").html(newTitle);
+    $.ajax({
+      method: "PUT",
+      url: `/api/books/${ $(this).attr('data-id') }`,
+      data: { title: newTitle },
+      success: (book) => {
+        $(this).parent().parent().find(".book-title").html(book.title);
+      }
+    })
+
   })
 
   $booksList.on('submit', '#addCharacterForm', function(e) {
@@ -88,7 +96,7 @@ function getBookHtml(book) {
             <b class="book-title">${book.title}</b>
             <span class="edit-input" style="display: none">
               <input type="text" value="${book.title}" />
-              <button class="edit-book-submit-button">Save</button>
+              <button class="edit-book-submit-button" data-id="${book._id}">Save</button>
             </span>
             by ${(book.author) ? book.author.name : 'null'}
             <button class="edit-book-button">Edit</button>
