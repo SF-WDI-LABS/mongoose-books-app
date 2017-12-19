@@ -35,6 +35,18 @@ $(document).ready(function(){
     });
   });
 
+  $booksList.on('click', '.edit-book-button', function() {
+    console.log('clicked edit button');
+    $(this).parent().find(".edit-input").show();
+
+  });
+
+  $booksList.on('click', '.edit-book-submit-button', function() {
+    $(this).parent().hide();
+    let newTitle = $(this).parent().find("input").val();
+    $(this).parent().parent().find(".book-title").html(newTitle);
+  })
+
   $booksList.on('submit', '#addCharacterForm', function(e) {
     e.preventDefault();
     console.log('new characters');
@@ -73,8 +85,13 @@ function getAllCharactersHtml(_book_id, characters) {
 function getBookHtml(book) {
   return `<hr>
           <p>
-            <b>${book.title}</b>
+            <b class="book-title">${book.title}</b>
+            <span class="edit-input" style="display: none">
+              <input type="text" value="${book.title}" />
+              <button class="edit-book-submit-button">Save</button>
+            </span>
             by ${(book.author) ? book.author.name : 'null'}
+            <button class="edit-book-button">Edit</button>
             <br>
             <b>Characters:</b>
             ${getAllCharactersHtml(book._id, book.characters)}
