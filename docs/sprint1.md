@@ -177,7 +177,7 @@ Next we'll start to use our new model in `server.js`.
 
 On your own, use mongoose CRUD methods to refactor the other `/api/books*` routes to get data from your database.
 
-Make sure you look back to the notes or the Mongoose documentation for info on important methods like:
+Make sure you look back to the notes or the [Mongoose documentation](http://mongoosejs.com/docs/3.0.x/docs/api.html#model-js) for info on important model methods like:
 
 * `find`
 * `findOneAndRemove`
