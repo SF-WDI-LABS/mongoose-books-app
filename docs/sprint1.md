@@ -37,7 +37,7 @@ First off let's setup mongo and mongoose.
   * image (use a string for this)
   * releaseDate
 
-  Let's create a schema using these properties.  I'll get you started, but check out the different mongoose schema types [here](http://mongoosejs.com/docs/schematypes.html):
+  Let's create a schema using these properties.  Check out the different mongoose schema types [here](http://mongoosejs.com/docs/schematypes.html), but use `String` for the above attributes:
 
   ```js
   // book.js
@@ -52,15 +52,11 @@ First off let's setup mongo and mongoose.
 
 4. Next let's create the `Book` model from the schema.  
   ```js
-  // book.js
   var Book = mongoose.model('Book', BookSchema);
   ```
 
 5. Finally we'll need to export Book from this **module** (that's this file).  You can export it at the very end of the file by doing:
   ```js
-  // book.js
-  var Book = mongoose.model('Book', BookSchema);
-
   module.exports = Book;
   ```
 
@@ -74,7 +70,9 @@ First off let's setup mongo and mongoose.
 
   ```js
   // models/index.js
-  module.exports.Book = require("./book.js");
+  var BookModel = require("./book.js");
+  
+  module.exports = {Book: BookModel}
   ```
 
 3. Now if someone were to `require('./models')` they'd gain access to this book database model.
@@ -98,9 +96,15 @@ mongoose.connect("mongodb://localhost/book-app");
 // the mongoose.connect line above  needs to happen exactly once in your code
     // move it from book.js to index.js  :)
 
-module.exports.Gargoyle = require("./gargoyle.js");
-module.exports.Goblin = require("./goblin.js");
-module.exports.Gnome = require("./gnome.js");
+  var GargoyleModel = require("./gargoyle.js");
+  var GoblinModel = require("./goblin.js");
+  var GnomeModel = require("./gnome.js");
+  
+module.exports = {
+  Gargoyle: GargoyleModel,
+  Goblin: GoblinModel,
+  Gnome: GnomeModel
+}
 ```
 
 In the end this means that when you require `./models` in `server.js` you get back an object like
@@ -127,7 +131,7 @@ In the end this means that when you require `./models` in `server.js` you get ba
     title: String,
     author: String,
     image: String,
-    release_date: String
+    releaseDate: String
   });
 
   var Book = mongoose.model('Book', BookSchema);
