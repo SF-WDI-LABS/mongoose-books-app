@@ -37,7 +37,7 @@ First off let's setup mongo and mongoose.
   * image (use a string for this)
   * releaseDate
 
-  Let's create a schema using these properties.  I'll get you started:
+  Let's create a schema using these properties.  I'll get you started, but check out the different mongoose schema types [here](http://mongoosejs.com/docs/schematypes.html):
 
   ```js
   // book.js
