@@ -119,7 +119,7 @@ In the end this means that when you require `./models` in `server.js` you get ba
 **What's a seed-file, you ask?**
 > A seed file is a file used to load pre-made data into our database.  It lets us start up our app without having to key in starter data each time.
 
-2. Try running `node seed.js` in your terminal. If you're not seeing `created X books`, then something might be going wrong in your `book.js` file.  
+2. Try running `node seed.js` in your terminal. If you're not seeing `created X books`, then something might be going wrong in your `book.js` file. Make sure `mongod` is running! You can't seed your database if it isn't up and running.
 
   Here's an example of what your `book.js` could look like:
 
